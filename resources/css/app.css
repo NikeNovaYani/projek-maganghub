@@ -1,0 +1,695 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-slate-800 antialiased bg-slate-50;
+    font-family: "Inter", sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Outfit", "Inter", sans-serif;
+  }
+}
+
+/* =========================================================
+   BRAND GRADIENT
+   ========================================================= */
+
+.bg-kariadi-gradient {
+  background: linear-gradient(135deg, #b8f27e 0%, #4ad9d4 50%, #0ead9d 100%);
+}
+
+.bg-kariadi-hero {
+  background: linear-gradient(
+    135deg,
+    #203817 0%,
+    #0f5557 45%,
+    #08766f 75%,
+    #032f32 100%
+  );
+}
+
+.bg-kariadi-subtle {
+  background: linear-gradient(
+    135deg,
+    rgba(184, 242, 126, 0.12) 0%,
+    rgba(74, 217, 212, 0.12) 50%,
+    rgba(14, 173, 157, 0.12) 100%
+  );
+}
+
+.text-kariadi-gradient {
+  background: linear-gradient(135deg, #b8f27e 0%, #4ad9d4 50%, #0ead9d 100%);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =========================================================
+   CUSTOM SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a7f3d0;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4ad9d4;
+}
+
+/* =========================================================
+   MARQUEE
+   ========================================================= */
+
+@keyframes continuousMarquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-smooth {
+  display: flex;
+  width: max-content;
+  animation: continuousMarquee 25s linear infinite;
+}
+
+.animate-marquee-smooth:hover {
+  animation-play-state: paused;
+}
+
+/* =========================================================
+   HERO PARALLAX
+   ========================================================= */
+
+.hero-parallax-stack {
+  position: relative;
+}
+
+/* =========================================================
+   PUBLIC NAVBAR
+   ========================================================= */
+
+.public-navbar {
+  will-change: margin, border-radius, background-color, box-shadow;
+}
+
+.public-navbar--floating {
+  --navbar-radius: 18px;
+
+  margin: 0.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--navbar-radius);
+
+  background-color: rgba(255, 255, 255, 0.75);
+
+  box-shadow: 0 20px 35px rgba(15, 23, 42, 0.1);
+
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+@media (min-width: 640px) {
+  .public-navbar--floating {
+    margin-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .public-navbar--floating {
+    margin-inline: 2.5rem;
+  }
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  isolation: isolate;
+
+  --hero-overlay-start: rgba(106, 171, 68, 0.55);
+  --hero-overlay-mid: rgba(49, 169, 176, 0.72);
+  --hero-overlay-end: rgba(30, 144, 142, 0.62);
+
+  --hero-bottom-opacity: 0.35;
+  --hero-image-opacity: 0.58;
+
+  --hero-zoom-scale: 1.08;
+  --hero-zoom-duration: 10s;
+}
+
+.hero-color-overlay {
+  z-index: 0;
+
+  background: linear-gradient(
+    135deg,
+    var(--hero-overlay-start) 0%,
+    var(--hero-overlay-mid) 48%,
+    var(--hero-overlay-end) 100%
+  );
+}
+
+.hero-bottom-overlay {
+  z-index: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 42, var(--hero-bottom-opacity)),
+    transparent 72%
+  );
+}
+
+.hero-slide-image {
+  opacity: var(--hero-image-opacity);
+
+  animation: heroKenBurns var(--hero-zoom-duration) ease-out both;
+
+  transform-origin: center center;
+}
+
+@keyframes heroKenBurns {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(var(--hero-zoom-scale));
+  }
+}
+
+.hero-sticky [data-hero-dimmer] {
+  opacity: var(--hero-dimmer, 0);
+  transition: opacity 120ms linear;
+}
+
+/* =========================================================
+   VISI & MISI CARD
+   ========================================================= */
+
+/*
+ * Glassmorphism card
+ *
+ * - Border 2px lebih tegas
+ * - Background transparan
+ * - Blur
+ * - Gradient border
+ * - Reflection
+ */
+
+.vision-mission-card {
+  margin-top: 1rem; /* Memberikan jarak atas kartu sebesar 32px dari elemen di atasnya */
+  height: 200px;
+  padding: 1.75rem !important;
+  height: auto !important;
+  min-height: fit-content !important;
+  position: relative;
+  overflow: visible !important;
+  isolation: isolate;
+  border: 3px solid transparent;
+
+  /*
+   * Layer pertama = glass background
+   * Layer kedua = animated gradient border
+   */
+  background:
+    linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.86),
+        rgba(240, 253, 250, 0.62)
+      )
+      padding-box,
+    linear-gradient(120deg, #b8f27e, #4ad9d4, #0ead9d, #b8f27e) border-box;
+
+  background-size:
+    100% 100%,
+    300% 100%;
+
+  /*
+   * Glass effect
+   */
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+
+  /*
+   * Shadow lembut
+   */
+  box-shadow: 0 10px 35px rgba(15, 23, 42, 0.05);
+
+  animation: missionBorderFlow 8s linear infinite;
+
+  transition:
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 500ms ease,
+    background-color 500ms ease;
+}
+
+/*
+ * Hover card
+ */
+.vision-mission-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 20px 45px rgba(15, 23, 42, 0.1),
+    0 8px 25px rgba(14, 173, 157, 0.08);
+}
+
+/* =========================================================
+   CARD GLASS REFLECTION
+   ========================================================= */
+
+/*
+ * Reflection utama.
+ *
+ * Bentuk diagonal seperti cahaya yang
+ * menyapu permukaan kaca.
+ */
+.vision-mission-card::after {
+  content: "";
+
+  position: absolute;
+
+  top: -50%;
+  left: -75%;
+
+  width: 42%;
+  height: 220%;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 30%,
+    rgba(255, 255, 255, 0.42) 50%,
+    rgba(255, 255, 255, 0.03) 70%,
+    transparent 100%
+  );
+
+  transform: rotate(18deg);
+
+  opacity: 0;
+
+  z-index: 2;
+
+  transition:
+    left 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 300ms ease;
+}
+
+/*
+ * Reflection berjalan ketika cursor
+ * melewati card.
+ */
+.vision-mission-card:hover::after {
+  left: 100%;
+  opacity: 5;
+}
+
+/*
+ * Highlight tipis di bagian atas kartu.
+ */
+.vision-mission-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 8%;
+  right: 8%;
+
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.95),
+    transparent
+  );
+
+  opacity: 0.9;
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+/*
+ * Konten selalu berada di atas glass effect.
+ */
+.vision-mission-card > * {
+  position: relative;
+  z-index: 3;
+}
+
+/* =========================================================
+   VISI / MISI TYPOGRAPHY
+   ========================================================= */
+
+/*
+ * Memberikan jarak yang lebih jelas antara
+ * judul "Visi" / "Misi" dengan isi.
+ *
+ * Override mb-3 dari HTML.
+ */
+.vision-mission-card h3 {
+  margin-bottom: 1.25rem !important;
+}
+
+/*
+ * Isi teks lebih nyaman dibaca.
+ */
+.vision-mission-card p,
+.vision-mission-card .mission-list {
+  line-height: 1.75;
+}
+
+/* =========================================================
+   MISSION LIST
+   ========================================================= */
+
+.mission-list {
+  list-style: none !important;
+
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+}
+
+/* =========================================================
+   MISSION ITEM
+   ========================================================= */
+
+.mission-item {
+  position: relative;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 0.9rem;
+
+  min-height: 40px;
+
+  padding: 0;
+}
+
+/* =========================================================
+   NOMOR LINGKARAN
+   ========================================================= */
+
+.mission-number {
+  position: relative;
+
+  flex: 0 0 36px;
+
+  width: 36px;
+  height: 36px;
+
+  min-width: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #b8f27e 0%, #4ad9d4 50%, #0ead9d 100%);
+
+  color: #064e4b;
+
+  font-family: "Outfit", "Inter", sans-serif;
+
+  font-size: 0.875rem;
+  font-weight: 800;
+
+  line-height: 1;
+
+  box-shadow: 0 6px 16px rgba(14, 173, 157, 0.2);
+
+  z-index: 2;
+}
+
+/* =========================================================
+   GARIS VERTIKAL
+   ========================================================= */
+
+.mission-item:not(:last-child)::after {
+  content: "";
+
+  position: absolute;
+
+  left: 17px;
+  top: 36px;
+
+  bottom: -16px;
+
+  width: 2px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(14, 173, 157, 0.45),
+    rgba(74, 217, 212, 0.12)
+  );
+}
+
+/* =========================================================
+   TEKS MISI
+   ========================================================= */
+
+.mission-content {
+  flex: 1;
+
+  display: block;
+
+  padding-top: 0.3rem;
+
+  color: #475569;
+
+  font-size: 0.875rem;
+
+  line-height: 1.75;
+}
+
+@media (min-width: 640px) {
+  .mission-item {
+    gap: 1rem;
+  }
+
+  .mission-number {
+    flex-basis: 38px;
+
+    width: 38px;
+    height: 38px;
+
+    min-width: 38px;
+  }
+
+  .mission-item:not(:last-child)::after {
+    left: 18px;
+    top: 38px;
+  }
+
+  .mission-content {
+    font-size: 1rem;
+  }
+}
+/* =========================================================
+   TEXT REVEAL
+   ATAS -> BAWAH
+   ========================================================= */
+
+/*
+ * Kondisi sebelum section masuk viewport.
+ *
+ * Sebelumnya:
+ * translateX(-8px)
+ *
+ * Sekarang:
+ * translateY(-18px)
+ *
+ * Jadi teks turun dari atas.
+ */
+[data-vision-reveal].reveal-ready .reveal-word {
+  display: inline-block;
+
+  opacity: 0 !important;
+
+  transform: translateY(-18px) !important;
+
+  /*
+   * Masking membuat teks seolah-olah
+   * dibuka dari atas ke bawah.
+   */
+  clip-path: inset(0 0 100% 0);
+
+  transition:
+    opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    clip-path 650ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  /*
+   * Setiap kata memiliki delay berbeda.
+   */
+  transition-delay: calc(
+    var(--card-delay, 0ms) + var(--item-delay, 0ms) +
+      (var(--word-index, 0) * 35ms)
+  );
+}
+
+/*
+ * Kondisi setelah section terlihat.
+ */
+[data-vision-reveal].is-revealed .reveal-word {
+  opacity: 1 !important;
+
+  transform: translateY(0) !important;
+
+  clip-path: inset(0 0 0 0);
+}
+
+/* =========================================================
+   CARD REVEAL
+   ========================================================= */
+
+[data-vision-reveal].reveal-ready .reveal-card {
+  opacity: 0 !important;
+
+  transform: translateY(28px) !important;
+
+  transition:
+    opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 750ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  transition-delay: var(--card-delay, 0ms);
+}
+
+[data-vision-reveal].is-revealed .reveal-card {
+  opacity: 1 !important;
+
+  transform: translateY(0) !important;
+}
+
+/* =========================================================
+   MISSION LIST REVEAL
+   ========================================================= */
+
+/*
+ * Karena setiap <li> juga mempunyai class
+ * reveal-text, animasinya tetap mengikuti
+ * sistem reveal utama.
+ */
+
+.mission-list li {
+  transition-delay: var(--item-delay, 0ms);
+}
+
+/* =========================================================
+   ANIMATED BORDER
+   ========================================================= */
+
+@keyframes missionBorderFlow {
+  0% {
+    background-position:
+      0 0,
+      0% 50%;
+  }
+
+  100% {
+    background-position:
+      0 0,
+      300% 50%;
+  }
+}
+
+/* =========================================================
+   VISION PANEL
+   ========================================================= */
+
+.vision-panel {
+  position: relative;
+  z-index: 10;
+  margin-top: 8px;  
+  border-radius: 40px 40px 0 0;
+  box-shadow: 0 -18px 45px rgba(15, 23, 42, 0.18);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .vision-mission-card {
+    margin-top: 1rem; /* Memberikan jarak atas kartu sebesar 32px dari elemen di atasnya */
+    height: 200px;
+    border: 3px solid transparent;
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+
+  .vision-mission-card:hover {
+    transform: translateY(-50px);
+  }
+
+  .vision-mission-card h3 {
+    margin-bottom: 1rem !important;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-sticky [data-hero-dimmer] {
+    transition: none;
+  }
+
+  .vision-mission-card,
+  .vision-mission-card::after {
+    animation: none;
+    transition: none;
+  }
+
+  .vision-mission-card:hover {
+    transform: none;
+  }
+
+  [data-vision-reveal].reveal-ready .reveal-card,
+  [data-vision-reveal].reveal-ready .reveal-word {
+    opacity: 1 !important;
+
+    transform: none !important;
+
+    clip-path: none !important;
+
+    transition: none !important;
+  }
+}
