@@ -1,4 +1,5 @@
-﻿<?= $this->extend('layouts/public') ?>
+﻿
+<?= $this->extend('layouts/public') ?>
 
 <?= $this->section('content') ?>
 
@@ -158,9 +159,9 @@ $heroJSON = json_encode(array_values($heroImages));
                         <!-- Header Card -->
                         <div class="flex items-center justify-between pb-4 border-b border-white/15">
                             <div class="flex items-center space-x-2.5">
-                                <div class="w-3.5 h-3.5 rounded-full bg-rose-400"></div>
-                                <div class="w-3.5 h-3.5 rounded-full bg-amber-400"></div>
-                                <div class="w-3.5 h-3.5 rounded-full bg-emerald-400"></div>
+                                <div class="w-3.5 h-3.5 rounded-full" style="background-color: #04877e;"></div>
+                                <div class="w-3.5 h-3.5 rounded-full" style="background-color: #00a99d;"></div>
+                                <div class="w-3.5 h-3.5 rounded-full" style="background-color: #70d9ff;"></div>
                             </div>
                         </div>
 
@@ -169,21 +170,28 @@ $heroJSON = json_encode(array_values($heroImages));
                             <div class="p-3.5 rounded-2xl bg-white/10 border border-white/10 flex items-center space-x-3.5 hover:bg-white/15 transition">
                                 <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-mint-400 to-brand-teal-500 flex items-center justify-center text-slate-950 font-black shrink-0">1</div>
                                 <div>
-                                    <div class="font-bold text-white text-sm">Hardware & Jaringan RS</div>
+                                    <div class="font-bold text-white text-sm">Hardware</div>
                                     <div class="text-slate-200 text-[11px]">Workstation medis, printer resep, intranet klinis</div>
                                 </div>
                             </div>
                             <div class="p-3.5 rounded-2xl bg-white/10 border border-white/10 flex items-center space-x-3.5 hover:bg-white/15 transition">
                                 <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-mint-400 to-brand-teal-500 flex items-center justify-center text-slate-950 font-black shrink-0">2</div>
                                 <div>
-                                    <div class="font-bold text-white text-sm">Software KIS / SIMRS</div>
+                                    <div class="font-bold text-white text-sm">Software</div>
                                     <div class="text-slate-200 text-[11px]">Rekam medis elektronik, billing kasir, farmasi, lab</div>
                                 </div>
                             </div>
                             <div class="p-3.5 rounded-2xl bg-white/10 border border-white/10 flex items-center space-x-3.5 hover:bg-white/15 transition">
                                 <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-mint-400 to-brand-teal-500 flex items-center justify-center text-slate-950 font-black shrink-0">3</div>
                                 <div>
-                                    <div class="font-bold text-white text-sm">Helpdesk & Support 24/7</div>
+                                    <div class="font-bold text-white text-sm">Penunjang TI</div>
+                                    <div class="text-slate-200 text-[11px]">Rekam medis elektronik, billing kasir, farmasi, lab</div>
+                                </div>
+                            </div>
+                            <div class="p-3.5 rounded-2xl bg-white/10 border border-white/10 flex items-center space-x-3.5 hover:bg-white/15 transition">
+                                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-mint-400 to-brand-teal-500 flex items-center justify-center text-slate-950 font-black shrink-0">4</div>
+                                <div>
+                                    <div class="font-bold text-white text-sm">Service Desk & Teknisi</div>
                                     <div class="text-slate-200 text-[11px]">Hotline on-call Ext. 2100 & tiket pelaporan Manpro</div>
                                 </div>
                             </div>
@@ -230,6 +238,7 @@ $heroJSON = json_encode(array_values($heroImages));
         }
     };
     ?>
+    <div class="curtain-transition" data-curtain-transition>
     <section id="profil" data-vision-panel data-vision-reveal class="vision-panel py-24 bg-white relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
@@ -301,23 +310,24 @@ $heroJSON = json_encode(array_values($heroImages));
             </div>
         </div>
     </section>
+    <div class="curtain-organization" data-curtain-organization>
+        <?= view('sections/struktur', ['organisasiTree' => $organisasi]) ?>
+    </div>
+    </div>
 </div>
 
-<!-- SECTION: STRUKTUR ORGANISASI -->
-<?= view('sections/struktur', ['organisasiTree' => $organisasi]) ?>
-
 <!-- SECTION: LAYANAN IT (4 KATEGORI) -->
-<section id="layanan" class="py-24 bg-white">
+<section id="layanan" class="relative z-20 pt-32 pb-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-16">
-            <span class="text-xs font-bold uppercase tracking-widest text-brand-emerald-800 bg-brand-emerald-50 px-3.5 py-1.5 rounded-full border border-brand-emerald-200">Katalog Layanan</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 mt-4">Layanan Teknologi Informasi</h2>
-            <p class="text-slate-600 mt-3 text-sm">4 Pilar layanan komputasi dan asistensi teknologi bagi seluruh civitas RSUP Dr. Kariadi</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-            <?php foreach ($layananKategori as $kat): ?>
-                <div class="bg-slate-50 rounded-3xl p-6 sm:p-7 border border-slate-200/80 hover:border-brand-emerald-400 hover:shadow-xl hover:shadow-brand-emerald-500/10 transition duration-300 flex flex-col justify-between group">
+        <div class="services-scroll-stage" data-services-stage>
+            <div class="services-scroll-pin">
+                <div class="services-heading text-center max-w-2xl mx-auto">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900">Layanan Teknologi Informasi</h2>
+                    <p class="text-slate-600 mt-3 text-sm">4 Pilar layanan komputasi dan asistensi teknologi bagi seluruh civitas RSUP Dr. Kariadi</p>
+                </div>
+                <div class="services-card-track" data-services-track>
+                    <?php foreach ($layananKategori as $serviceIndex => $kat): ?>
+                        <article class="service-card bg-slate-50 rounded-3xl p-6 sm:p-7 border border-slate-200/80 hover:border-brand-emerald-400 hover:shadow-xl hover:shadow-brand-emerald-500/10 transition duration-300 flex flex-col justify-between group" data-service-slide style="--service-offset: <?= $serviceIndex * 14 ?>px; --service-layer: <?= 20 - $serviceIndex ?>;">
                     <div>
                         <div class="w-13 h-13 w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-emerald-700 to-brand-teal-700 text-brand-mint-300 flex items-center justify-center font-bold mb-5 shadow-lg shadow-brand-emerald-800/20 group-hover:scale-105 transition">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -332,7 +342,7 @@ $heroJSON = json_encode(array_values($heroImages));
                             <div class="space-y-2 pt-4 border-t border-slate-200/80">
                                 <?php foreach ($itemsByKategori[$kat['id']] as $subItem): ?>
                                     <div class="flex items-start space-x-2 text-xs text-slate-700">
-                                        <span class="text-brand-emerald-500 font-bold">â€¢</span>
+                                        <span class="text-brand-emerald-500 font-bold">&#8226;</span>
                                         <span><strong><?= esc($subItem['judul']) ?></strong></span>
                                     </div>
                                 <?php endforeach; ?>
@@ -348,8 +358,10 @@ $heroJSON = json_encode(array_values($heroImages));
                             </svg>
                         </a>
                     </div>
+                        </article>
+                    <?php endforeach; ?>
                 </div>
-            <?php endforeach; ?>
+            </div>
         </div>
     </div>
 </section>
@@ -777,6 +789,85 @@ $heroJSON = json_encode(array_values($heroImages));
         });
 
         observer.observe(visionReveal);
+    })();
+
+    (() => {
+        const transition = document.querySelector('[data-curtain-transition]');
+        const panel = document.querySelector('[data-vision-panel]');
+        const organization = document.querySelector('[data-curtain-organization]');
+        const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        if (!transition || !panel || !organization) {
+            return;
+        }
+
+        let framePending = false;
+
+        const updateCurtain = () => {
+            framePending = false;
+            const panelHeight = panel.offsetHeight;
+            transition.style.setProperty('--curtain-height', `${panelHeight}px`);
+
+            if (reducedMotionQuery.matches) {
+                organization.style.removeProperty('transform');
+                return;
+            }
+
+            const transitionTop = transition.getBoundingClientRect().top + window.scrollY;
+            const progress = Math.min(1, Math.max(0, (window.scrollY - transitionTop) / Math.max(panelHeight, 1)));
+            organization.style.transform = `translate3d(0, ${progress * panelHeight}px, 0)`;
+        };
+
+        const requestCurtainUpdate = () => {
+            if (framePending) {
+                return;
+            }
+
+            framePending = true;
+            window.requestAnimationFrame(updateCurtain);
+        };
+
+        window.addEventListener('scroll', requestCurtainUpdate, { passive: true });
+        window.addEventListener('resize', requestCurtainUpdate, { passive: true });
+        reducedMotionQuery.addEventListener('change', requestCurtainUpdate);
+        requestCurtainUpdate();
+    })();
+
+    (() => {
+        const stage = document.querySelector('[data-services-stage]');
+        const track = document.querySelector('[data-services-track]');
+        const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        if (!stage || !track) {
+            return;
+        }
+
+        let framePending = false;
+        const updateDesktopTrack = () => {
+            framePending = false;
+            if (window.innerWidth < 1024 || reducedMotionQuery.matches) {
+                track.style.removeProperty('transform');
+                return;
+            }
+
+            const scrollDistance = Math.max(stage.offsetHeight - window.innerHeight, 1);
+            const progress = Math.min(1, Math.max(0, -stage.getBoundingClientRect().top / scrollDistance));
+            track.style.transform = `translate3d(${110 - progress * 220}vw, 0, 0)`;
+        };
+
+        const requestDesktopUpdate = () => {
+            if (framePending) {
+                return;
+            }
+
+            framePending = true;
+            window.requestAnimationFrame(updateDesktopTrack);
+        };
+
+        window.addEventListener('scroll', requestDesktopUpdate, { passive: true });
+        window.addEventListener('resize', requestDesktopUpdate, { passive: true });
+        reducedMotionQuery.addEventListener('change', requestDesktopUpdate);
+        requestDesktopUpdate();
     })();
 </script>
 <?= $this->endSection() ?>

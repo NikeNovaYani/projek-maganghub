@@ -693,3 +693,118 @@
     transition: none !important;
   }
 }
+
+/* =========================================================
+   SERVICES SCROLL + MOBILE CAROUSEL
+   ========================================================= */
+
+.services-scroll-pin {
+  position: relative;
+}
+
+.services-card-track {
+  display: flex;
+  gap: 1rem;
+}
+
+.service-card {
+  min-width: 0;
+  scroll-snap-align: center;
+}
+
+.services-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.65rem;
+  padding-top: 1.25rem;
+}
+
+.services-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  background: #cbd5e1;
+  transition: width 220ms ease, background-color 220ms ease;
+}
+
+.services-dot.is-active {
+  width: 1.65rem;
+  background: #168b89;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .services-card-track {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .services-pagination {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .services-scroll-stage {
+    height: 240vh;
+  }
+
+  .services-scroll-pin {
+    position: sticky;
+    top: 0;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .services-card-track {
+    width: min(1280px, calc(100vw - 6rem));
+    height: min(560px, calc(100vh - 8rem));
+    margin-inline: auto;
+    will-change: transform;
+  }
+
+  .service-card {
+    flex: 1 1 0;
+    transition: flex-grow 500ms cubic-bezier(0.22, 1, 0.36, 1), border-color 300ms ease, box-shadow 300ms ease;
+  }
+
+  .service-card:hover,
+  .service-card:focus-within {
+    flex-grow: 1.7;
+  }
+
+  .services-pagination {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .services-card-track {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 0.5rem;
+  }
+
+  .services-card-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .service-card {
+    flex: 0 0 88%;
+    min-height: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card,
+  .services-dot {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}

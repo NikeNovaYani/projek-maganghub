@@ -25,19 +25,30 @@ class Struktur extends BaseController
             ]);
         }
 
-        $isStaffGroup = (int) $parent['level'] === 4;
-        $staff = $isStaffGroup ? $model->getLevelFiveStaff($parentId) : [$parent];
+        if ($parent['node_type'] === 'tim') {
+            return $this->response->setJSON([
+                'success' => true,
+                'mode'    => 'staff',
+                'parent'  => [
+                    'id'      => $parent['id'],
+                    'nama'    => $parent['nama'],
+                    'jabatan' => $parent['jabatan'],
+                    'foto'    => null,
+                ],
+                'staff' => $model->getGroupMembers($parentId),
+            ]);
+        }
 
         return $this->response->setJSON([
             'success' => true,
-            'mode'    => $isStaffGroup ? 'staff' : 'profile',
+            'mode'    => 'profile',
             'parent'  => [
                 'id'          => $parent['id'],
                 'nama'        => $parent['nama'],
                 'jabatan'     => $parent['jabatan'],
                 'foto'        => $parent['foto'],
             ],
-            'staff' => $staff,
+            'staff' => [$parent],
         ]);
     }
 

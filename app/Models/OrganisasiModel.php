@@ -12,6 +12,7 @@ class OrganisasiModel extends Model
     protected $allowedFields = [
         'parent_id',
         'level',
+        'node_type',
         'layout_type',
         'nama',
         'jabatan',
@@ -20,14 +21,64 @@ class OrganisasiModel extends Model
         'created_by',
         'updated_by',
     ];
+    protected $useTimestamps = true;
+    protected $dateFormat = 'datetime';
+    protected $validationRules = [
+        'parent_id' => 'permit_empty|is_natural_no_zero',
+        'level' => 'required|is_natural_no_zero|less_than_equal_to[4]',
+        'node_type' => 'required|in_list[kepala,penjab,katim,admin,tim]',
+        'layout_type' => 'required|in_list[main,side]',
+        'nama' => 'required|max_length[150]',
+        'jabatan' => 'required|max_length[150]',
+        'foto' => 'permit_empty|max_length[255]',
+        'urutan' => 'required|is_natural',
+    ];
+    protected $validationMessages = [
+        'parent_id' => [
+            'is_natural_no_zero' => 'Atasan yang dipilih tidak valid.',
+        ],
+        'level' => [
+            'required' => 'Kategori jabatan wajib dipilih.',
+            'less_than_equal_to' => 'Kategori jabatan tidak valid.',
+        ],
+        'layout_type' => [
+            'in_list' => 'Tipe tata letak tidak valid.',
+        ],
+        'nama' => [
+            'required' => 'Nama wajib diisi.',
+            'max_length' => 'Nama maksimal 150 karakter.',
+        ],
+        'jabatan' => [
+            'required' => 'Jabatan wajib diisi.',
+            'max_length' => 'Jabatan maksimal 150 karakter.',
+        ],
+    ];
+
+    public function getParentOptions(int $childLevel, ?int $excludeId = null): array
+    {
+        $builder = $this->select('id, level, nama, jabatan')
+            ->where('level', $childLevel - 1)
+            ->where('node_type', 'pejabat')
+            ->orderBy('urutan', 'ASC')
+            ->orderBy('nama', 'ASC');
+
+        if ($excludeId !== null) {
+            $builder->where('id !=', $excludeId);
+        }
+
+        return $builder->findAll();
+    }
+
+    public function hasChildren(int $id): bool
+    {
+        return $this->where('parent_id', $id)->countAllResults() > 0;
+    }
 
     public function getMainTree(): array
     {
         $rows = $this->db->table($this->table . ' o')
-            ->select('o.id, o.parent_id, o.level, o.layout_type, o.nama, o.jabatan, o.foto, o.urutan, CASE WHEN o.level = 1 THEN (SELECT COUNT(*) FROM ' . $this->table . ' total_staff WHERE total_staff.level = 5) WHEN o.level = 4 THEN COUNT(staff.id) ELSE 0 END AS total_staf', false)
-            ->join($this->table . ' staff', 'staff.parent_id = o.id AND staff.level = 5', 'left', false)
+            ->select('o.id, o.parent_id, o.level, o.node_type, o.layout_type, o.nama, o.jabatan, o.foto, o.urutan, (SELECT COUNT(*) FROM organisasi_anggota a WHERE a.organisasi_id = o.id) AS total_anggota', false)
             ->whereIn('o.level', [1, 2, 3, 4])
-            ->groupBy('o.id, o.parent_id, o.level, o.layout_type, o.nama, o.jabatan, o.foto, o.urutan')
             ->orderBy('o.urutan', 'ASC')
             ->orderBy('o.id', 'ASC')
             ->get()
@@ -35,7 +86,7 @@ class OrganisasiModel extends Model
 
         $childrenByParent = [];
         foreach ($rows as $row) {
-            $row['total_staf'] = (int) $row['total_staf'];
+            $row['total_anggota'] = (int) $row['total_anggota'];
             $key = $row['parent_id'] === null ? 'root' : (string) $row['parent_id'];
             $childrenByParent[$key][] = $row;
         }
@@ -45,16 +96,16 @@ class OrganisasiModel extends Model
 
     public function getProfile(int $id): ?array
     {
-        return $this->select('id, parent_id, level, layout_type, nama, jabatan, foto, urutan')
+        return $this->select('id, parent_id, level, node_type, layout_type, nama, jabatan, foto, urutan')
             ->where('id', $id)
             ->first();
     }
 
-    public function getLevelFiveStaff(int $parentId): array
+    public function getGroupMembers(int $groupId): array
     {
-        return $this->select('id, parent_id, level, nama, jabatan, foto, urutan')
-            ->where('parent_id', $parentId)
-            ->where('level', 5)
+        return (new OrganisasiAnggotaModel())
+            ->select('id, organisasi_id, nama, jabatan, foto, urutan')
+            ->where('organisasi_id', $groupId)
             ->orderBy('urutan', 'ASC')
             ->orderBy('id', 'ASC')
             ->findAll();
@@ -62,12 +113,16 @@ class OrganisasiModel extends Model
 
     public function getTree(?int $parentId = null): array
     {
-        $rows = $this->orderBy('urutan', 'ASC')
-            ->orderBy('id', 'ASC')
-            ->findAll();
+        $rows = $this->db->table($this->table . ' o')
+            ->select('o.id, o.parent_id, o.level, o.node_type, o.layout_type, o.nama, o.jabatan, o.foto, o.urutan, (SELECT COUNT(*) FROM organisasi_anggota a WHERE a.organisasi_id = o.id) AS total_anggota', false)
+            ->orderBy('o.urutan', 'ASC')
+            ->orderBy('o.id', 'ASC')
+            ->get()
+            ->getResultArray();
 
         $childrenByParent = [];
         foreach ($rows as $row) {
+            $row['total_anggota'] = (int) $row['total_anggota'];
             $key = $row['parent_id'] === null ? 'root' : (string) $row['parent_id'];
             $childrenByParent[$key][] = $row;
         }
@@ -75,6 +130,40 @@ class OrganisasiModel extends Model
         $rootKey = $parentId === null ? 'root' : (string) $parentId;
 
         return $this->buildTree($childrenByParent, $rootKey);
+    }
+
+    public function isInSubtree(int $candidateId, int $rootId): bool
+    {
+        $childrenByParent = [];
+        foreach ($this->select('id, parent_id')->findAll() as $node) {
+            $childrenByParent[(int) ($node['parent_id'] ?? 0)][] = (int) $node['id'];
+        }
+
+        $pending = [$rootId];
+        $visited = [];
+        while ($pending !== []) {
+            $currentId = array_pop($pending);
+            if (isset($visited[$currentId])) {
+                continue;
+            }
+            $visited[$currentId] = true;
+
+            foreach ($childrenByParent[$currentId] ?? [] as $childId) {
+                if ($childId === $candidateId) {
+                    return true;
+                }
+                $pending[] = $childId;
+            }
+        }
+
+        return false;
+    }
+
+    public function getGroupMemberCount(int $groupId): int
+    {
+        return (new OrganisasiAnggotaModel())
+            ->where('organisasi_id', $groupId)
+            ->countAllResults();
     }
 
     public function getDirectStaff(int $parentId): array

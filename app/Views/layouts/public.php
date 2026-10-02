@@ -1,3 +1,5 @@
+<!-- navbar publik -->
+
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
@@ -16,6 +18,7 @@
     
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="<?= base_url('css/app.css') ?>?v=<?= time() ?>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.css">
     
     <!-- Alpine.js -->
     <script defer src="<?= base_url('js/alpine.min.js') ?>"></script>
@@ -193,5 +196,42 @@
     </footer>
 
     <?= $this->renderSection('scripts') ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script>
+        (() => {
+            if (typeof window.Lenis !== 'function') {
+                return;
+            }
+
+            const lenis = new window.Lenis({
+                duration: 1.6,
+                smoothWheel: true,
+                wheelMultiplier: 0.55,
+                touchMultiplier: 1.5,
+                easing: (time) => Math.min(1, 1.001 - Math.pow(2, -10 * time)),
+                autoRaf: false,
+            });
+
+            if (window.gsap?.ticker && window.ScrollTrigger) {
+                window.gsap.registerPlugin(window.ScrollTrigger);
+                lenis.on('scroll', () => window.ScrollTrigger.update());
+                window.gsap.ticker.add((time) => lenis.raf(time * 1000));
+                window.gsap.ticker.lagSmoothing(0);
+                return;
+            }
+
+            if (window.ScrollTrigger) {
+                lenis.on('scroll', () => window.ScrollTrigger.update());
+            }
+
+            const raf = (time) => {
+                lenis.raf(time);
+                window.requestAnimationFrame(raf);
+            };
+
+            window.requestAnimationFrame(raf);
+        })();
+    </script>
 </body>
 </html>

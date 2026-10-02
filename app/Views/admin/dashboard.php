@@ -1,8 +1,6 @@
 <?= $this->extend('layouts/admin') ?>
-
 <?= $this->section('title') ?>Dashboard<?= $this->endSection() ?>
-<?= $this->section('page_heading') ?>Dashboard Ringkasan SIRS<?= $this->endSection() ?>
-<?= $this->section('page_description') ?>Selamat datang di sistem manajemen portal Divisi SIRS RSUP Dr. Kariadi<?= $this->endSection() ?>
+<?= $this->section('page_heading') ?>Dashboard<?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 

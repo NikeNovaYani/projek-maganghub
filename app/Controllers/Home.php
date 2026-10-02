@@ -25,7 +25,14 @@ class Home extends BaseController
             ->getResultArray();
 
         $itemsByKategori = [];
+        $seenLayananItems = [];
         foreach ($layananItems as $item) {
+            $itemKey = $item['kategori_id'] . ':' . strtolower(trim($item['judul']));
+            if (isset($seenLayananItems[$itemKey])) {
+                continue;
+            }
+
+            $seenLayananItems[$itemKey] = true;
             $itemsByKategori[$item['kategori_id']][] = $item;
         }
 

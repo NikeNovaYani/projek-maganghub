@@ -15,7 +15,7 @@ class ComproSirsSeeder extends Seeder
             [
                 'key'        => 'site_name',
                 'value'      => 'Instalasi SIRS RSUP Dr. Kariadi',
-                'label'      => 'Nama Instansi / Portal',
+                'label'      => 'Nama Instalasi',
                 'tipe'       => 'text',
                 'group'      => 'general',
                 'created_at' => $now,
@@ -142,8 +142,8 @@ class ComproSirsSeeder extends Seeder
         $layananKategori = [
             [
                 'id'         => 1,
-                'nama'       => 'Hardware & Infrastruktur',
-                'slug'       => 'hardware-infrastruktur',
+                'nama'       => 'Hardware',
+                'slug'       => 'hardware',
                 'ikon'       => 'server',
                 'deskripsi'  => 'Pengelolaan workstation PC, printer medis/label, barcode scanner, CCTV medis, UPS, dan perangkat komputasi di seluruh unit kerja.',
                 'urutan'     => 1,
@@ -152,8 +152,8 @@ class ComproSirsSeeder extends Seeder
             ],
             [
                 'id'         => 2,
-                'nama'       => 'Software & Aplikasi KIS (SIMRS)',
-                'slug'       => 'software-kis-simrs',
+                'nama'       => 'Software',
+                'slug'       => 'software',
                 'ikon'       => 'code',
                 'deskripsi'  => 'Pengembangan, pemeliharaan modul Rekam Medis Elektronik (RME/EMR), Billing, Farmasi, Laboratorium, Radiologi, dan integrasi SatuSehat/BPJS.',
                 'urutan'     => 2,
@@ -162,8 +162,8 @@ class ComproSirsSeeder extends Seeder
             ],
             [
                 'id'         => 3,
-                'nama'       => 'Jaringan & Keamanan TI',
-                'slug'       => 'jaringan-keamanan-ti',
+                'nama'       => 'Penunjang Teknologi Informasi',
+                'slug'       => 'penunjang-ti',
                 'ikon'       => 'shield-check',
                 'deskripsi'  => 'Penyediaan konektivitas intranet LAN/Wi-Fi rumah sakit, data center, firewall, backup data otomatis, dan proteksi keamanan siber.',
                 'urutan'     => 3,
@@ -172,8 +172,8 @@ class ComproSirsSeeder extends Seeder
             ],
             [
                 'id'         => 4,
-                'nama'       => 'Technical Support & Helpdesk 24 Jam',
-                'slug'       => 'technical-support-helpdesk',
+                'nama'       => 'Technical Support 24 Jam',
+                'slug'       => 'technical-support',
                 'ikon'       => 'headphones',
                 'deskripsi'  => 'Layanan cepat tanggap penanganan kendala IT bagi dokter, perawat, dan staf operasional 24 jam sehari 7 hari seminggu.',
                 'urutan'     => 4,
@@ -196,7 +196,28 @@ class ComproSirsSeeder extends Seeder
             ['kategori_id' => 4, 'judul' => 'Service Desk On-Call 24/7 (Ext. 2100)', 'deskripsi' => 'Pusat panggilan darurat kendala IT untuk unit gawat darurat, ICU, dan rawat inap.', 'urutan' => 1, 'created_at' => $now, 'updated_at' => $now],
             ['kategori_id' => 4, 'judul' => 'Tiket Pelaporan Masalah via Manpro', 'deskripsi' => 'Pencatatan kendala dan pemantauan SLA penyelesaian oleh teknisi secara transparan.', 'urutan' => 2, 'created_at' => $now, 'updated_at' => $now],
         ];
-        $this->db->table('layanan_item')->ignore(true)->insertBatch($layananItems);
+        $existingLayananItems = $this->db->table('layanan_item')
+            ->select('kategori_id, judul')
+            ->get()
+            ->getResultArray();
+        $existingLayananKeys = [];
+        foreach ($existingLayananItems as $item) {
+            $existingLayananKeys[$item['kategori_id'] . ':' . strtolower(trim($item['judul']))] = true;
+        }
+
+        $newLayananItems = array_filter($layananItems, static function ($item) use (&$existingLayananKeys) {
+            $itemKey = $item['kategori_id'] . ':' . strtolower(trim($item['judul']));
+            if (isset($existingLayananKeys[$itemKey])) {
+                return false;
+            }
+
+            $existingLayananKeys[$itemKey] = true;
+            return true;
+        });
+
+        if (! empty($newLayananItems)) {
+            $this->db->table('layanan_item')->insertBatch(array_values($newLayananItems));
+        }
 
         // 5. Daftar Aplikasi KIS
         $kisAplikasi = [
@@ -210,53 +231,61 @@ class ComproSirsSeeder extends Seeder
         $this->db->table('kis_aplikasi')->ignore(true)->insertBatch($kisAplikasi);
 
         // 6. Struktur Organisasi
+        $this->db->table('organisasi_anggota')->where('id >', 0)->delete();
         $this->db->table('organisasi')->where('id >', 0)->delete();
 
         $orgRows = [
-            ['id' => 1, 'parent_id' => null, 'level' => 1, 'layout_type' => 'main', 'nama' => 'Dr. Ir. Bambang Hermanto, M.Kom', 'jabatan' => 'Ka. Instalasi SIRS & Komunikasi', 'foto' => null, 'urutan' => 1],
-            ['id' => 2, 'parent_id' => 1, 'level' => 2, 'layout_type' => 'side', 'nama' => 'Rahmat Hidayat, S.Kom, M.T', 'jabatan' => 'Administrasi', 'foto' => null, 'urutan' => 1],
-            ['id' => 3, 'parent_id' => 1, 'level' => 2, 'layout_type' => 'main', 'nama' => 'Dimas Prasetyo, S.T', 'jabatan' => 'Penjab Layanan & Mutu Layanan', 'foto' => null, 'urutan' => 2],
-            ['id' => 4, 'parent_id' => 1, 'level' => 2, 'layout_type' => 'main', 'nama' => 'Siti Nurhaliza, S.Kom', 'jabatan' => 'Penjab Sarana & Prasarana', 'foto' => null, 'urutan' => 3],
-            ['id' => 5, 'parent_id' => 4, 'level' => 3, 'layout_type' => 'main', 'nama' => 'Fajar Nugroho, S.Kom', 'jabatan' => 'Ka Tim Pengembangan dan Pemeliharaan Perangkat Lunak', 'foto' => null, 'urutan' => 1],
-            ['id' => 6, 'parent_id' => 4, 'level' => 3, 'layout_type' => 'main', 'nama' => 'Maya Lestari, S.Kom', 'jabatan' => 'Ka Tim Pengembangan dan Pemeliharaan Infrastruktur Teknologi Informasi', 'foto' => null, 'urutan' => 2],
-            ['id' => 7, 'parent_id' => 4, 'level' => 3, 'layout_type' => 'main', 'nama' => 'Andi Kurniawan, S.T', 'jabatan' => 'Ka Tim Penunjang Teknologi Informasi', 'foto' => null, 'urutan' => 3],
-            ['id' => 8, 'parent_id' => 5, 'level' => 4, 'layout_type' => 'main', 'nama' => 'Tim Business Analis', 'jabatan' => 'Business Analis', 'foto' => null, 'urutan' => 1],
-            ['id' => 9, 'parent_id' => 5, 'level' => 4, 'layout_type' => 'main', 'nama' => 'Tim Analisis Sistem', 'jabatan' => 'Analisis Sistem', 'foto' => null, 'urutan' => 2],
-            ['id' => 10, 'parent_id' => 5, 'level' => 4, 'layout_type' => 'main', 'nama' => 'Tim Programer', 'jabatan' => 'Programer', 'foto' => null, 'urutan' => 3],
-            ['id' => 11, 'parent_id' => 6, 'level' => 4, 'layout_type' => 'main', 'nama' => 'Tim Administrator Database', 'jabatan' => 'Administrator Database', 'foto' => null, 'urutan' => 1],
-            ['id' => 12, 'parent_id' => 6, 'level' => 4, 'layout_type' => 'main', 'nama' => 'Tim Administrator Aplikasi', 'jabatan' => 'Administrator Aplikasi', 'foto' => null, 'urutan' => 2],
-            ['id' => 13, 'parent_id' => 6, 'level' => 4, 'layout_type' => 'main', 'nama' => 'Tim Administrator Server dan Network', 'jabatan' => 'Administrator Server dan Network', 'foto' => null, 'urutan' => 3],
-            ['id' => 14, 'parent_id' => 6, 'level' => 4, 'layout_type' => 'main', 'nama' => 'Tim Teknisi', 'jabatan' => 'Teknisi', 'foto' => null, 'urutan' => 4],
-            ['id' => 15, 'parent_id' => 7, 'level' => 4, 'layout_type' => 'main', 'nama' => 'Tim Implementator', 'jabatan' => 'Implementator', 'foto' => null, 'urutan' => 1],
-            ['id' => 16, 'parent_id' => 7, 'level' => 4, 'layout_type' => 'main', 'nama' => 'Tim Help Desk', 'jabatan' => 'Help Desk', 'foto' => null, 'urutan' => 2],
-            ['id' => 17, 'parent_id' => 7, 'level' => 4, 'layout_type' => 'main', 'nama' => 'Tim Logistik', 'jabatan' => 'Logistik', 'foto' => null, 'urutan' => 3],
+            ['id' => 1, 'parent_id' => null, 'level' => 1, 'node_type' => 'kepala', 'layout_type' => 'main', 'nama' => 'Dr. Ir. Bambang Hermanto, M.Kom', 'jabatan' => 'Ka. Instalasi SIRS & Komunikasi', 'foto' => null, 'urutan' => 1],
+            ['id' => 2, 'parent_id' => 1, 'level' => 2, 'node_type' => 'admin', 'layout_type' => 'side', 'nama' => 'Rahmat Hidayat, S.Kom, M.T', 'jabatan' => 'Administrasi', 'foto' => null, 'urutan' => 1],
+            ['id' => 3, 'parent_id' => 1, 'level' => 2, 'node_type' => 'penjab', 'layout_type' => 'main', 'nama' => 'Dimas Prasetyo, S.T', 'jabatan' => 'Penjab Layanan & Mutu Layanan', 'foto' => null, 'urutan' => 2],
+            ['id' => 4, 'parent_id' => 1, 'level' => 2, 'node_type' => 'penjab', 'layout_type' => 'main', 'nama' => 'Siti Nurhaliza, S.Kom', 'jabatan' => 'Penjab Sarana & Prasarana', 'foto' => null, 'urutan' => 3],
+            ['id' => 5, 'parent_id' => 4, 'level' => 3, 'node_type' => 'katim', 'layout_type' => 'main', 'nama' => 'Fajar Nugroho, S.Kom', 'jabatan' => 'Ka Tim Pengembangan dan Pemeliharaan Perangkat Lunak', 'foto' => null, 'urutan' => 1],
+            ['id' => 6, 'parent_id' => 4, 'level' => 3, 'node_type' => 'katim', 'layout_type' => 'main', 'nama' => 'Maya Lestari, S.Kom', 'jabatan' => 'Ka Tim Pengembangan dan Pemeliharaan Infrastruktur Teknologi Informasi', 'foto' => null, 'urutan' => 2],
+            ['id' => 7, 'parent_id' => 4, 'level' => 3, 'node_type' => 'katim', 'layout_type' => 'main', 'nama' => 'Andi Kurniawan, S.T', 'jabatan' => 'Ka Tim Penunjang Teknologi Informasi', 'foto' => null, 'urutan' => 3],
         ];
 
         $staffGroups = [
-            8  => ['names' => ['Ari Wibowo', 'Budi Santoso'], 'role' => 'Business Analis'],
-            9  => ['names' => ['Citra Puspita', 'Deni Firmansyah'], 'role' => 'Analisis Sistem'],
-            10 => ['names' => ['Aditya Pranata', 'Bella Maharani', 'Chandra Kusuma', 'Dewi Anggraini', 'Erlangga Putra', 'Fina Oktaviani', 'Gilang Ramadhan', 'Hani Lestari', 'Indra Gunawan', 'Jihan Safitri', 'Kevin Alamsyah', 'Laras Wulandari', 'Miko Setiaji'], 'role' => 'Programer'],
-            11 => ['names' => ['Agus Setiawan', 'Bayu Kurniawan'], 'role' => 'Administrator Database'],
-            12 => ['names' => ['Eko Saputra', 'Farhan Maulana'], 'role' => 'Administrator Aplikasi'],
-            13 => ['names' => ['Galih Pratama', 'Hendra Wijaya'], 'role' => 'Administrator Server dan Network'],
-            14 => ['names' => ['Iqbal Ramadhan', 'Joko Susilo', 'Kurniawan Putra', 'Lukman Hakim', 'Nanda Pratama', 'Oscar Firmansyah', 'Putri Amelia', 'Raka Mahendra', 'Salsa Nabila', 'Tegar Prakoso', 'Vina Kartika'], 'role' => 'Teknisi'],
-            15 => ['names' => ['Wahyu Haryanto', 'Yuni Astuti'], 'role' => 'Implementator'],
-            16 => ['names' => ['Zaki Akbar', 'Anisa Rahma'], 'role' => 'Help Desk'],
-            17 => ['names' => ['Bagas Adi', 'Cahyo Nugraha'], 'role' => 'Logistik'],
+            ['parent_id' => 5, 'names' => ['Ari Wibowo', 'Budi Santoso'], 'role' => 'Business Analis'],
+            ['parent_id' => 5, 'names' => ['Citra Puspita', 'Deni Firmansyah'], 'role' => 'Analisis Sistem'],
+            ['parent_id' => 5, 'names' => ['Aditya Pranata', 'Bella Maharani', 'Chandra Kusuma', 'Dewi Anggraini', 'Erlangga Putra', 'Fina Oktaviani', 'Gilang Ramadhan', 'Hani Lestari', 'Indra Gunawan', 'Jihan Safitri', 'Kevin Alamsyah', 'Laras Wulandari', 'Miko Setiaji'], 'role' => 'Programer'],
+            ['parent_id' => 6, 'names' => ['Agus Setiawan', 'Bayu Kurniawan'], 'role' => 'Administrator Database'],
+            ['parent_id' => 6, 'names' => ['Eko Saputra', 'Farhan Maulana'], 'role' => 'Administrator Aplikasi'],
+            ['parent_id' => 6, 'names' => ['Galih Pratama', 'Hendra Wijaya'], 'role' => 'Administrator Server dan Network'],
+            ['parent_id' => 6, 'names' => ['Iqbal Ramadhan', 'Joko Susilo', 'Kurniawan Putra', 'Lukman Hakim', 'Nanda Pratama', 'Oscar Firmansyah', 'Putri Amelia', 'Raka Mahendra', 'Salsa Nabila', 'Tegar Prakoso', 'Vina Kartika'], 'role' => 'Teknisi'],
+            ['parent_id' => 7, 'names' => ['Wahyu Haryanto', 'Yuni Astuti'], 'role' => 'Implementator'],
+            ['parent_id' => 7, 'names' => ['Zaki Akbar', 'Anisa Rahma'], 'role' => 'Help Desk'],
+            ['parent_id' => 7, 'names' => ['Bagas Adi', 'Cahyo Nugraha'], 'role' => 'Logistik'],
         ];
 
-        $nextId = 18;
-        foreach ($staffGroups as $parentId => $group) {
-            foreach ($group['names'] as $order => $name) {
-                $orgRows[] = [
-                    'id' => $nextId++,
-                    'parent_id' => $parentId,
-                    'level' => 5,
-                    'layout_type' => 'main',
+        $nextId = 8;
+        $nextMemberId = 1;
+        $groupOrdersByParent = [];
+        $memberOrdersByGroup = [];
+        $memberRows = [];
+        foreach ($staffGroups as $group) {
+            $parentId = $group['parent_id'];
+            $groupId = $nextId++;
+            $groupOrdersByParent[$parentId] = ($groupOrdersByParent[$parentId] ?? 0) + 1;
+            $orgRows[] = [
+                'id' => $groupId,
+                'parent_id' => $parentId,
+                'level' => 4,
+                'node_type' => 'tim',
+                'layout_type' => 'main',
+                'nama' => $group['role'],
+                'jabatan' => $group['role'],
+                'foto' => null,
+                'urutan' => $groupOrdersByParent[$parentId],
+            ];
+            foreach ($group['names'] as $name) {
+                $memberOrdersByGroup[$groupId] = ($memberOrdersByGroup[$groupId] ?? 0) + 1;
+                $memberRows[] = [
+                    'id' => $nextMemberId++,
+                    'organisasi_id' => $groupId,
                     'nama' => $name,
                     'jabatan' => $group['role'],
                     'foto' => null,
-                    'urutan' => $order + 1,
+                    'urutan' => $memberOrdersByGroup[$groupId],
                 ];
             }
         }
@@ -268,6 +297,12 @@ class ComproSirsSeeder extends Seeder
         unset($orgRow);
 
         $this->db->table('organisasi')->insertBatch($orgRows);
+        foreach ($memberRows as &$memberRow) {
+            $memberRow['created_at'] = $now;
+            $memberRow['updated_at'] = $now;
+        }
+        unset($memberRow);
+        $this->db->table('organisasi_anggota')->insertBatch($memberRows);
 
         // 7. Berita Awal
         $berita = [
