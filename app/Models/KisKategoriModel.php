@@ -4,20 +4,18 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class LayananKategoriModel extends Model
+class KisKategoriModel extends Model
 {
-    protected $table            = 'layanan_kategori';
-    protected $primaryKey       = 'id';
-    protected $returnType       = 'array';
-    protected $useTimestamps    = true;
-    protected $allowedFields    = ['nama', 'slug', 'ikon', 'deskripsi', 'gambar_kategori', 'urutan', 'created_by', 'updated_by'];
+    protected $table         = 'kis_kategori';
+    protected $primaryKey    = 'id';
+    protected $returnType    = 'array';
+    protected $useTimestamps = true;
+    protected $allowedFields = ['nama', 'slug', 'deskripsi', 'urutan', 'created_by', 'updated_by'];
 
     protected $validationRules = [
         'nama'      => 'required|min_length[3]|max_length[100]',
         'slug'      => 'required|max_length[120]',
-        'ikon'      => 'permit_empty|max_length[100]',
-        'deskripsi' => 'permit_empty|max_length[1000]',
-        'gambar_kategori' => 'permit_empty|max_length[255]',
+        'deskripsi' => 'permit_empty|max_length[255]',
     ];
 
     protected $validationMessages = [
@@ -27,39 +25,45 @@ class LayananKategoriModel extends Model
             'max_length' => 'Nama kategori maksimal 100 karakter.',
         ],
         'deskripsi' => [
-            'max_length' => 'Deskripsi maksimal 1000 karakter.',
+            'max_length' => 'Deskripsi maksimal 255 karakter.',
         ],
     ];
 
     /**
-     * Semua kategori (urut) beserta item-itemnya, untuk halaman admin.
-     * Tidak menyaring duplikat, supaya data asli terlihat.
+     * Semua kategori (urut) beserta aplikasinya, ditambah aplikasi yang belum punya kategori.
+     *
+     * @return array{kategori: list<array<string, mixed>>, tanpa_kategori: list<array<string, mixed>>}
      */
-    public function getAllWithItems(): array
+    public function getAllWithApps(): array
     {
         $kategori = $this->orderBy('urutan', 'ASC')->orderBy('id', 'ASC')->findAll();
 
-        $items = (new LayananItemModel())
+        $apps = (new KisAplikasiModel())
             ->orderBy('urutan', 'ASC')
             ->orderBy('id', 'ASC')
             ->findAll();
 
         $byKategori = [];
-        foreach ($items as $item) {
-            $byKategori[$item['kategori_id']][] = $item;
+        $tanpaKategori = [];
+        foreach ($apps as $app) {
+            if (empty($app['kategori_id'])) {
+                $tanpaKategori[] = $app;
+                continue;
+            }
+            $byKategori[$app['kategori_id']][] = $app;
         }
 
         foreach ($kategori as &$row) {
-            $row['items'] = $byKategori[$row['id']] ?? [];
+            $row['apps'] = $byKategori[$row['id']] ?? [];
         }
         unset($row);
 
-        return $kategori;
+        return ['kategori' => $kategori, 'tanpa_kategori' => $tanpaKategori];
     }
 
-    public function hasItems(int $id): bool
+    public function hasApps(int $id): bool
     {
-        return db_connect()->table('layanan_item')->where('kategori_id', $id)->countAllResults() > 0;
+        return db_connect()->table('kis_aplikasi')->where('kategori_id', $id)->countAllResults() > 0;
     }
 
     public function nextOrder(): int
@@ -69,9 +73,6 @@ class LayananKategoriModel extends Model
         return (int) ($row['max_urutan'] ?? 0) + 1;
     }
 
-    /**
-     * Slug unik dari nama, mis. "Technical Support" -> "technical-support", "technical-support-2", dst.
-     */
     public function uniqueSlug(string $nama, ?int $ignoreId = null): string
     {
         helper('url');

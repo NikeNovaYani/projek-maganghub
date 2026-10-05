@@ -753,16 +753,27 @@
 
   .services-scroll-pin {
     position: sticky;
-    top: 0;
+    top: 40px;
     display: flex;
-    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    height: calc(100vh - 40px);
     align-items: center;
     overflow: hidden;
+    padding-top: 6rem;
+  }
+
+  .services-heading {
+    position: absolute;
+    top: 3rem;
+    left: 50%;
+    width: min(42rem, calc(100% - 3rem));
+    transform: translateX(-50%);
   }
 
   .services-card-track {
     width: min(1280px, calc(100vw - 6rem));
-    height: min(560px, calc(100vh - 8rem));
+    height: min(560px, calc(100vh - 12rem));
     margin-inline: auto;
     will-change: transform;
   }
@@ -770,6 +781,17 @@
   .service-card {
     flex: 1 1 0;
     transition: flex-grow 500ms cubic-bezier(0.22, 1, 0.36, 1), border-color 300ms ease, box-shadow 300ms ease;
+  }
+
+  .service-card > div:first-child {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  .service-card > div:last-child {
+    flex: 0 0 auto;
+    min-width: 0;
   }
 
   .service-card:hover,
@@ -797,7 +819,12 @@
 
   .service-card {
     flex: 0 0 88%;
-    min-height: 100%;
+    min-height: 460px;
+  }
+
+  .service-card > div:last-child a {
+    max-width: 100%;
+    flex-wrap: wrap;
   }
 }
 

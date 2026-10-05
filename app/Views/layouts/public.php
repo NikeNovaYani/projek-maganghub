@@ -71,7 +71,7 @@
                 <a href="<?= base_url() ?>" class="px-3.5 py-2 rounded-xl hover:text-brand-emerald-700 hover:bg-brand-emerald-50/70 transition font-bold text-brand-emerald-800 bg-brand-emerald-50/40">Beranda</a>
                 <a href="<?= base_url('#profil') ?>" class="px-3.5 py-2 rounded-xl hover:text-brand-emerald-700 hover:bg-brand-emerald-50/70 transition">Profil & Visi</a>
                 <a href="<?= base_url('#organisasi') ?>" class="px-3.5 py-2 rounded-xl hover:text-brand-emerald-700 hover:bg-brand-emerald-50/70 transition">Struktur</a>
-                <a href="<?= base_url('#layanan') ?>" class="px-3.5 py-2 rounded-xl hover:text-brand-emerald-700 hover:bg-brand-emerald-50/70 transition">Layanan IT</a>
+                <a href="<?= base_url('#layanan-it') ?>" class="px-3.5 py-2 rounded-xl hover:text-brand-emerald-700 hover:bg-brand-emerald-50/70 transition">Layanan IT</a>
                 <a href="<?= base_url('#kis') ?>" class="px-3.5 py-2 rounded-xl hover:text-brand-emerald-700 hover:bg-brand-emerald-50/70 transition">Aplikasi KIS</a>
                 <a href="<?= base_url('#berita') ?>" class="px-3.5 py-2 rounded-xl hover:text-brand-emerald-700 hover:bg-brand-emerald-50/70 transition">Berita</a>
                 <a href="<?= base_url('#galeri') ?>" class="px-3.5 py-2 rounded-xl hover:text-brand-emerald-700 hover:bg-brand-emerald-50/70 transition flex items-center space-x-1 font-semibold text-brand-teal-700">
@@ -101,7 +101,7 @@
                 <a @click="mobileNav = false" href="<?= base_url() ?>" class="px-3.5 py-2.5 rounded-xl hover:bg-brand-emerald-50 hover:text-brand-emerald-700 font-bold text-brand-emerald-800">Beranda</a>
                 <a @click="mobileNav = false" href="<?= base_url('#profil') ?>" class="px-3.5 py-2.5 rounded-xl hover:bg-brand-emerald-50 hover:text-brand-emerald-700">Profil & Visi</a>
                 <a @click="mobileNav = false" href="<?= base_url('#organisasi') ?>" class="px-3.5 py-2.5 rounded-xl hover:bg-brand-emerald-50 hover:text-brand-emerald-700">Struktur Organisasi</a>
-                <a @click="mobileNav = false" href="<?= base_url('#layanan') ?>" class="px-3.5 py-2.5 rounded-xl hover:bg-brand-emerald-50 hover:text-brand-emerald-700">Layanan IT</a>
+                <a @click="mobileNav = false" href="<?= base_url('#layanan-it') ?>" class="px-3.5 py-2.5 rounded-xl hover:bg-brand-emerald-50 hover:text-brand-emerald-700">Layanan IT</a>
                 <a @click="mobileNav = false" href="<?= base_url('#kis') ?>" class="px-3.5 py-2.5 rounded-xl hover:bg-brand-emerald-50 hover:text-brand-emerald-700">Aplikasi KIS</a>
                 <a @click="mobileNav = false" href="<?= base_url('#berita') ?>" class="px-3.5 py-2.5 rounded-xl hover:bg-brand-emerald-50 hover:text-brand-emerald-700">Berita & Informasi</a>
                 <a @click="mobileNav = false" href="<?= base_url('#galeri') ?>" class="px-3.5 py-2.5 rounded-xl hover:bg-brand-emerald-50 hover:text-brand-emerald-700 font-semibold text-brand-teal-700">Galeri Kegiatan</a>
@@ -145,10 +145,10 @@
             <div class="space-y-3">
                 <h5 class="text-white font-bold font-heading text-sm uppercase tracking-wider text-brand-mint-400">Navigasi Utama</h5>
                 <ul class="text-xs space-y-2 text-slate-400">
-                    <li><a href="<?= base_url('#layanan') ?>" class="hover:text-brand-mint-300 transition">Hardware & Infrastruktur</a></li>
-                    <li><a href="<?= base_url('#layanan') ?>" class="hover:text-brand-mint-300 transition">Software & SIMRS (KIS)</a></li>
-                    <li><a href="<?= base_url('#layanan') ?>" class="hover:text-brand-mint-300 transition">Jaringan & Keamanan TI</a></li>
-                    <li><a href="<?= base_url('#layanan') ?>" class="hover:text-brand-mint-300 transition">Technical Support 24 Jam</a></li>
+                    <li><a href="<?= base_url('#layanan-it') ?>" class="hover:text-brand-mint-300 transition">Hardware & Infrastruktur</a></li>
+                    <li><a href="<?= base_url('#layanan-it') ?>" class="hover:text-brand-mint-300 transition">Software & SIMRS (KIS)</a></li>
+                    <li><a href="<?= base_url('#layanan-it') ?>" class="hover:text-brand-mint-300 transition">Jaringan & Keamanan TI</a></li>
+                    <li><a href="<?= base_url('#layanan-it') ?>" class="hover:text-brand-mint-300 transition">Technical Support 24 Jam</a></li>
                     <li><a href="<?= base_url('#galeri') ?>" class="hover:text-brand-mint-300 transition font-semibold text-brand-emerald-400">Galeri Dokumentasi &rarr;</a></li>
                     <li><a href="<?= esc(site_setting('manpro_url', 'https://manpro.rskariadi.id')) ?>" target="_blank" class="hover:text-brand-mint-300 transition font-semibold text-brand-mint-300">Sistem Manpro Pelaporan &rarr;</a></li>
                 </ul>

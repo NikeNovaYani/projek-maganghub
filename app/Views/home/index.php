@@ -1,5 +1,4 @@
-﻿
-<?= $this->extend('layouts/public') ?>
+﻿<?= $this->extend('layouts/public') ?>
 
 <?= $this->section('content') ?>
 
@@ -130,7 +129,7 @@ $heroJSON = json_encode(array_values($heroImages));
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
                         </a>
-                        <a href="#layanan"
+                        <a href="#layanan-it"
                             class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-white/10 hover:bg-white/20 text-white font-semibold text-sm px-7 py-4 rounded-2xl backdrop-blur-md border border-white/15 transition duration-200">
                             <span>Jelajahi Layanan SIRS</span>
                         </a>
@@ -239,85 +238,85 @@ $heroJSON = json_encode(array_values($heroImages));
     };
     ?>
     <div class="curtain-transition" data-curtain-transition>
-    <section id="profil" data-vision-panel data-vision-reveal class="vision-panel py-24 bg-white relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="reveal-text text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 mt-1"><?php $renderRevealWords('Profil Instalasi SIRS'); ?></h2>
-                <p class="reveal-text text-slate-600 mt-1 text-sm sm:text-base leading-relaxed">
-                    <?php $renderRevealWords((string) site_setting('about_sirs', '')); ?>
-                </p>
-            </div>
+        <section id="profil" data-vision-panel data-vision-reveal class="vision-panel py-24 bg-white relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="reveal-text text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 mt-1"><?php $renderRevealWords('Profil Instalasi SIRS'); ?></h2>
+                    <p class="reveal-text text-slate-600 mt-1 text-sm sm:text-base leading-relaxed">
+                        <?php $renderRevealWords((string) site_setting('about_sirs', '')); ?>
+                    </p>
+                </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Visi -->
-                <div class="vision-mission-card reveal-card p-6 sm:p-10 rounded-3xl hover:shadow-xl hover:shadow-brand-emerald-500/10 transition duration-300" data-reveal-card style="--card-delay: 0ms">
-                    <!-- UBAH LAYOUT VISI DI BLOK flex: logo kiri, teks kanan. -->
-                    <div class="flex items-start gap-5">
-                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-emerald-700 to-brand-teal-600 text-brand-mint-200 flex items-center justify-center font-bold text-xl shadow-lg shadow-brand-emerald-700/25 shrink-0">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Visi -->
+                    <div class="vision-mission-card reveal-card p-6 sm:p-10 rounded-3xl hover:shadow-xl hover:shadow-brand-emerald-500/10 transition duration-300" data-reveal-card style="--card-delay: 0ms">
+                        <!-- UBAH LAYOUT VISI DI BLOK flex: logo kiri, teks kanan. -->
+                        <div class="flex items-start gap-5">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-emerald-700 to-brand-teal-600 text-brand-mint-200 flex items-center justify-center font-bold text-xl shadow-lg shadow-brand-emerald-700/25 shrink-0">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                            </div>
+                            <div class="min-w-0">
+                                <h3 class="reveal-text text-2xl font-bold font-heading text-slate-900 mb-3"><?php $renderRevealWords('Visi'); ?></h3>
+                                <p class="reveal-text text-sm sm:text-base text-slate-600 leading-relaxed">
+                                    <?php $renderRevealWords($visionText); ?>
+                                </p>
+                            </div>
                         </div>
-                        <div class="min-w-0">
-                            <h3 class="reveal-text text-2xl font-bold font-heading text-slate-900 mb-3"><?php $renderRevealWords('Visi'); ?></h3>
-                            <p class="reveal-text text-sm sm:text-base text-slate-600 leading-relaxed">
-                                <?php $renderRevealWords($visionText); ?>
-                            </p>
+                    </div>
+
+                    <!-- Misi -->
+                    <div class="vision-mission-card reveal-card p-8 sm:p-10 rounded-3xl hover:shadow-xl hover:shadow-brand-teal-500/10 transition duration-300" data-reveal-card style="--card-delay: 140ms">
+                        <!-- UBAH LAYOUT MISI DI BLOK flex: logo kiri, daftar teks kanan. -->
+                        <div class="flex items-start gap-5">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-mint-500 to-brand-emerald-600 text-slate-950 flex items-center justify-center font-bold text-xl shadow-lg shadow-brand-mint-500/25 shrink-0">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                                </svg>
+                            </div>
+                            <div class="min-w-0">
+                                <h3 class="reveal-text text-2xl font-bold font-heading text-slate-900 mb-3"><?php $renderRevealWords('Misi'); ?></h3>
+                                <?php if (! empty($missionItems)): ?>
+
+                                    <ol class="mission-list">
+
+                                        <?php foreach ($missionItems as $itemIndex => $missionItem): ?>
+
+                                            <li
+                                                class="mission-item reveal-text"
+                                                style="--item-delay: <?= $itemIndex * 120 ?>ms">
+
+                                                <span class="mission-number">
+                                                    <?= $itemIndex + 1 ?>
+                                                </span>
+
+                                                <span class="mission-content">
+                                                    <?php $renderRevealWords($missionItem); ?>
+                                                </span>
+
+                                            </li>
+
+                                        <?php endforeach; ?>
+
+                                    </ol>
+
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Misi -->
-                <div class="vision-mission-card reveal-card p-8 sm:p-10 rounded-3xl hover:shadow-xl hover:shadow-brand-teal-500/10 transition duration-300" data-reveal-card style="--card-delay: 140ms">
-                    <!-- UBAH LAYOUT MISI DI BLOK flex: logo kiri, daftar teks kanan. -->
-                    <div class="flex items-start gap-5">
-                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-mint-500 to-brand-emerald-600 text-slate-950 flex items-center justify-center font-bold text-xl shadow-lg shadow-brand-mint-500/25 shrink-0">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                            </svg>
-                        </div>
-                        <div class="min-w-0">
-                            <h3 class="reveal-text text-2xl font-bold font-heading text-slate-900 mb-3"><?php $renderRevealWords('Misi'); ?></h3>
-                            <?php if (! empty($missionItems)): ?>
-
-                                <ol class="mission-list">
-
-                                    <?php foreach ($missionItems as $itemIndex => $missionItem): ?>
-
-                                        <li
-                                            class="mission-item reveal-text"
-                                            style="--item-delay: <?= $itemIndex * 120 ?>ms">
-
-                                            <span class="mission-number">
-                                                <?= $itemIndex + 1 ?>
-                                            </span>
-
-                                            <span class="mission-content">
-                                                <?php $renderRevealWords($missionItem); ?>
-                                            </span>
-
-                                        </li>
-
-                                    <?php endforeach; ?>
-
-                                </ol>
-
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                </div>
             </div>
+        </section>
+        <div class="curtain-organization" data-curtain-organization>
+            <?= view('sections/struktur', ['organisasiTree' => $organisasi]) ?>
         </div>
-    </section>
-    <div class="curtain-organization" data-curtain-organization>
-        <?= view('sections/struktur', ['organisasiTree' => $organisasi]) ?>
-    </div>
     </div>
 </div>
 
 <!-- SECTION: LAYANAN IT (4 KATEGORI) -->
-<section id="layanan" class="relative z-20 pt-32 pb-24 bg-white">
+<section id="layanan-it" class="relative z-20 pt-28 pb-24 sm:pt-36 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-8">
         <div class="services-scroll-stage" data-services-stage>
             <div class="services-scroll-pin">
@@ -328,36 +327,56 @@ $heroJSON = json_encode(array_values($heroImages));
                 <div class="services-card-track" data-services-track>
                     <?php foreach ($layananKategori as $serviceIndex => $kat): ?>
                         <article class="service-card bg-slate-50 rounded-3xl p-6 sm:p-7 border border-slate-200/80 hover:border-brand-emerald-400 hover:shadow-xl hover:shadow-brand-emerald-500/10 transition duration-300 flex flex-col justify-between group" data-service-slide style="--service-offset: <?= $serviceIndex * 14 ?>px; --service-layer: <?= 20 - $serviceIndex ?>;">
-                    <div>
-                        <div class="w-13 h-13 w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-emerald-700 to-brand-teal-700 text-brand-mint-300 flex items-center justify-center font-bold mb-5 shadow-lg shadow-brand-emerald-800/20 group-hover:scale-105 transition">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-lg font-bold font-heading text-slate-900 mb-2 group-hover:text-brand-emerald-700 transition"><?= esc($kat['nama']) ?></h3>
-                        <p class="text-xs text-slate-600 leading-relaxed mb-4"><?= esc($kat['deskripsi']) ?></p>
-
-                        <!-- Sub Items -->
-                        <?php if (!empty($itemsByKategori[$kat['id']])): ?>
-                            <div class="space-y-2 pt-4 border-t border-slate-200/80">
-                                <?php foreach ($itemsByKategori[$kat['id']] as $subItem): ?>
-                                    <div class="flex items-start space-x-2 text-xs text-slate-700">
-                                        <span class="text-brand-emerald-500 font-bold">&#8226;</span>
-                                        <span><strong><?= esc($subItem['judul']) ?></strong></span>
+                            <div>
+                                <?php if (! empty($kat['gambar_kategori'])): ?>
+                                    <?php $categoryIsVideo = strtolower(pathinfo($kat['gambar_kategori'], PATHINFO_EXTENSION)) === 'webm'; ?>
+                                    <?php if ($categoryIsVideo): ?>
+                                        <video src="<?= base_url('uploads/layanan/' . rawurlencode(basename($kat['gambar_kategori']))) ?>" aria-label="<?= esc($kat['nama']) ?>" autoplay muted loop playsinline class="mb-5 aspect-video w-full rounded-2xl object-cover"></video>
+                                    <?php else: ?>
+                                        <img src="<?= base_url('uploads/layanan/' . rawurlencode(basename($kat['gambar_kategori']))) ?>" alt="<?= esc($kat['nama']) ?>" loading="lazy" class="mb-5 aspect-video w-full rounded-2xl object-cover">
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <div class="w-13 h-13 w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-emerald-700 to-brand-teal-700 text-brand-mint-300 flex items-center justify-center font-bold mb-5 shadow-lg shadow-brand-emerald-800/20 group-hover:scale-105 transition">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                        </svg>
                                     </div>
-                                <?php endforeach; ?>
-                            </div>
-                        <?php endif; ?>
-                    </div>
+                                <?php endif; ?>
+                                <h3 class="text-lg font-bold font-heading text-slate-900 mb-2 group-hover:text-brand-emerald-700 transition"><?= esc($kat['nama']) ?></h3>
+                                <p class="text-xs text-slate-600 leading-relaxed mb-4"><?= esc($kat['deskripsi']) ?></p>
 
-                    <div class="pt-6 mt-4 border-t border-slate-200/60">
-                        <a href="<?= esc(site_setting('manpro_url', 'https://manpro.rskariadi.id')) ?>" target="_blank" class="inline-flex items-center space-x-1.5 text-xs font-bold text-brand-emerald-700 hover:text-brand-teal-700 transition">
-                            <span>Lapor kendala layanan ini</span>
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </a>
-                    </div>
+                                <!-- Sub Items -->
+                                <?php if (!empty($itemsByKategori[$kat['id']])): ?>
+                                    <div class="space-y-2 pt-4 border-t border-slate-200/80">
+                                        <?php foreach ($itemsByKategori[$kat['id']] as $subItem): ?>
+                                            <div class="flex items-start space-x-2 text-xs text-slate-700">
+                                                <span class="text-brand-emerald-500 font-bold">&#8226;</span>
+                                                <?php if (! empty($subItem['gambar_layanan'])): ?>
+                                                    <?php $mediaType = strtolower(pathinfo($subItem['gambar_layanan'], PATHINFO_EXTENSION)) === 'webm' ? 'video' : 'image'; ?>
+                                                    <button type="button" data-layanan-viewer
+                                                        data-title="<?= esc($subItem['judul'], 'attr') ?>"
+                                                        data-src="<?= esc(base_url('uploads/layanan/' . rawurlencode(basename($subItem['gambar_layanan']))), 'attr') ?>"
+                                                        data-media-type="<?= $mediaType ?>"
+                                                        class="text-left font-semibold text-brand-emerald-800 underline decoration-brand-emerald-300 underline-offset-2 hover:text-brand-teal-700 focus:outline-none focus:ring-2 focus:ring-brand-emerald-500">
+                                                        <?= esc($subItem['judul']) ?>
+                                                    </button>
+                                                <?php else: ?>
+                                                    <span><strong><?= esc($subItem['judul']) ?></strong></span>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+
+                            <div class="pt-6 mt-4 border-t border-slate-200/60">
+                                <a href="<?= esc(site_setting('manpro_url', 'https://manpro.rskariadi.id')) ?>" target="_blank" class="inline-flex items-center space-x-1.5 text-xs font-bold text-brand-emerald-700 hover:text-brand-teal-700 transition">
+                                    <span>Lapor kendala layanan ini</span>
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </a>
+                            </div>
                         </article>
                     <?php endforeach; ?>
                 </div>
@@ -366,13 +385,834 @@ $heroJSON = json_encode(array_values($heroImages));
     </div>
 </section>
 
+<div id="layanan-media-viewer" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/25 p-3 backdrop-blur-xl sm:p-6" role="dialog" aria-modal="true" aria-labelledby="layanan-viewer-title" hidden>
+    <div class="flex h-[94vh] w-full max-w-7xl flex-col overflow-hidden rounded-2xl border border-white/70 bg-white/95 shadow-2xl">
+        <div class="flex shrink-0 items-center justify-between gap-3 border-b border-slate-200 px-4 py-3 text-slate-800 sm:px-5">
+            <h2 id="layanan-viewer-title" class="min-w-0 truncate text-sm font-semibold sm:text-base"></h2>
+            <div class="flex shrink-0 items-center gap-1.5">
+                <button type="button" data-viewer-zoom-out aria-label="Zoom out" title="Zoom out" class="grid h-10 w-10 place-items-center rounded-lg text-xl hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-teal-600">−</button>
+                <button type="button" data-viewer-reset aria-label="Reset zoom" title="Reset zoom" class="h-10 rounded-lg px-2 text-xs font-semibold hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-teal-600 sm:px-3">Reset</button>
+                <button type="button" data-viewer-zoom-in aria-label="Zoom in" title="Zoom in" class="grid h-10 w-10 place-items-center rounded-lg text-xl hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-teal-600">+</button>
+                <button type="button" data-viewer-close aria-label="Tutup viewer" class="ml-1 grid h-10 w-10 place-items-center rounded-lg hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-teal-600">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 6l12 12M18 6L6 18" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div data-viewer-stage class="flex min-h-0 flex-1 items-center justify-center overflow-auto bg-slate-100/80 p-2 sm:p-6">
+            <img data-viewer-image alt="" class="hidden max-h-[86vh] max-w-full origin-center object-contain transition-transform duration-150">
+            <video data-viewer-video controls playsinline class="hidden max-h-[86vh] max-w-full origin-center object-contain transition-transform duration-150"></video>
+        </div>
+    </div>
+</div>
+
 <!-- SECTION: KARIADI INFORMATION SYSTEM (KIS) -->
+<!-- SECTION: KARIADI INFORMATION SYSTEM (KIS) -->
+<?php
+$kisKategori = $kisKategori ?? [];
+$kisKlasLabels = ['pmk82' => 'PMK 82', 'diluar_pmk' => 'Diluar PMK', 'eksternal' => 'Integrasi Eksternal'];
+$kisKlasColors = ['pmk82' => '#22c55e', 'diluar_pmk' => '#3b82f6', 'eksternal' => '#f59e0b'];
+$kisVariants = ['bento', 'carousel', 'nodes', 'chips'];
+
+$kisAllApps = [];
+foreach ($kisKategori as $kisKat) {
+    foreach ($kisKat['apps'] as $kisApp) {
+        $kisAllApps[] = $kisApp;
+    }
+}
+$kisKatCount = count($kisKategori);
+
+// Label klasifikasi dan akses internal
+$kisTags = static function (array $app) use ($kisKlasLabels, $kisKlasColors): void {
+    $klas = (string) ($app['klasifikasi'] ?? '');
+    $internal = (int) ($app['akses_internal'] ?? 0) === 1;
+    if (! isset($kisKlasLabels[$klas]) && ! $internal) {
+        return;
+    }
+?>
+    <div class="kis-tags">
+        <?php if (isset($kisKlasLabels[$klas])): ?>
+            <span class="kis-pill"><i style="--dot: <?= esc($kisKlasColors[$klas], 'attr') ?>"></i><?= esc($kisKlasLabels[$klas]) ?></span>
+        <?php endif; ?>
+        <?php if ($internal): ?>
+            <span class="kis-pill kis-pill--internal">
+                <svg width="10" height="10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                Akses internal
+            </span>
+        <?php endif; ?>
+    </div>
+<?php
+};
+
+// Kartu penuh (gaya bento, carousel, dan node). Kelas kartu lama dipertahankan.
+$kisCard = static function (array $app) use ($kisKlasLabels, $kisTags): void {
+    $url = trim((string) ($app['url'] ?? ''));
+    $hasLink = $url !== '';
+    $klas = (string) ($app['klasifikasi'] ?? '');
+    $search = mb_strtolower(trim((string) $app['nama_aplikasi'] . ' ' . (string) ($app['deskripsi_singkat'] ?? '')));
+    $tag = $hasLink ? 'a' : 'div';
+    $class = $hasLink
+        ? 'group bg-white/5 hover:bg-white/10 p-6 rounded-3xl border border-white/10 hover:border-brand-mint-400/50 hover:shadow-xl hover:shadow-brand-emerald-500/10 transition duration-300 flex flex-col justify-between kis-fx'
+        : 'bg-white/5 p-6 rounded-3xl border border-white/10 transition duration-300 flex flex-col justify-between kis-fx';
+?>
+    <<?= $tag ?> <?= $hasLink ? 'href="' . esc($url, 'attr') . '" target="_blank" rel="noopener noreferrer"' : '' ?> class="<?= $class ?>" data-kis-card data-klas="<?= esc($klas, 'attr') ?>" data-search="<?= esc($search, 'attr') ?>">
+        <div>
+            <div class="flex items-start justify-between gap-3 mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-mint-400 to-brand-teal-500 flex items-center justify-center text-slate-950 font-bold group-hover:scale-105 transition shadow-md shadow-brand-mint-400/20">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                </div>
+                <?php $kisTags($app); ?>
+            </div>
+            <h3 class="text-base font-bold font-heading text-white group-hover:text-brand-mint-300 transition"><?= esc($app['nama_aplikasi']) ?></h3>
+            <?php if (! empty($app['deskripsi_singkat'])): ?>
+                <p class="text-xs text-slate-300 mt-2 leading-relaxed"><?= esc($app['deskripsi_singkat']) ?></p>
+            <?php endif; ?>
+        </div>
+        <?php if ($hasLink): ?>
+            <div class="mt-5 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-brand-mint-300 group-hover:text-white">
+                <span class="font-mono text-[11px] truncate mr-2"><?= esc($url) ?></span>
+                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+            </div>
+        <?php endif; ?>
+    </<?= $tag ?>>
+<?php
+};
+
+// Chip ringkas (gaya Aplikasi Pendukung)
+$kisChip = static function (array $app) use ($kisKlasColors): void {
+    $url = trim((string) ($app['url'] ?? ''));
+    $hasLink = $url !== '';
+    $klas = (string) ($app['klasifikasi'] ?? '');
+    $internal = (int) ($app['akses_internal'] ?? 0) === 1;
+    $search = mb_strtolower(trim((string) $app['nama_aplikasi'] . ' ' . (string) ($app['deskripsi_singkat'] ?? '')));
+    $tag = $hasLink ? 'a' : 'span';
+?>
+    <<?= $tag ?> <?= $hasLink ? 'href="' . esc($url, 'attr') . '" target="_blank" rel="noopener noreferrer"' : '' ?> class="kis-chip kis-fx" title="<?= esc((string) ($app['deskripsi_singkat'] ?? ''), 'attr') ?>" data-kis-card data-klas="<?= esc($klas, 'attr') ?>" data-search="<?= esc($search, 'attr') ?>">
+        <?php if (isset($kisKlasColors[$klas])): ?><i class="kis-dot" style="--dot: <?= esc($kisKlasColors[$klas], 'attr') ?>"></i><?php endif; ?>
+        <span><?= esc($app['nama_aplikasi']) ?></span>
+        <?php if ($internal): ?>
+            <span class="kis-chip__lock" title="Akses internal">
+                <svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                Akses internal
+            </span>
+        <?php endif; ?>
+        <?php if ($hasLink): ?>
+            <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+        <?php endif; ?>
+    </<?= $tag ?>>
+<?php
+};
+?>
 <section id="kis" class="py-24 bg-gradient-to-br from-slate-950 via-brand-emerald-950 to-slate-950 text-white relative overflow-hidden">
+    <style>
+        /* ===== KIS: tambahan tampilan (kelas kartu lama tidak diubah) ===== */
+        /* overflow: clip menggantikan overflow-hidden supaya rel navigasi bisa lengket (sticky) */
+        #kis {
+            overflow: clip;
+            --kis-sticky-top: 5.5rem;
+        }
+
+        #kis [hidden] {
+            display: none !important;
+        }
+
+        /* Hub */
+        #kis .kis-hub {
+            position: relative;
+            max-width: 52rem;
+            margin: 0 auto 3rem;
+            aspect-ratio: 16 / 8;
+        }
+
+        #kis .kis-hub__lines {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #kis .kis-hub__line {
+            stroke: rgba(110, 231, 183, .3);
+            stroke-width: 1.5;
+            stroke-dasharray: 4 5;
+            vector-effect: non-scaling-stroke;
+            transition: stroke .3s ease;
+        }
+
+        #kis .kis-hub__line.is-on {
+            stroke: rgba(110, 231, 183, .95);
+            stroke-dasharray: none;
+        }
+
+        #kis .kis-hub__core {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            display: grid;
+            place-items: center;
+            width: 8.5rem;
+            height: 8.5rem;
+            padding: .5rem;
+            text-align: center;
+            transform: translate(-50%, -50%);
+            border: 1px solid rgba(110, 231, 183, .35);
+            border-radius: 9999px;
+            background: radial-gradient(circle at 35% 30%, rgba(110, 231, 183, .35), rgba(15, 118, 110, .25) 60%, rgba(15, 23, 42, .6));
+            box-shadow: 0 0 60px rgba(45, 212, 191, .18);
+        }
+
+        #kis .kis-hub__core strong {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: .04em;
+        }
+
+        #kis .kis-hub__core small {
+            display: block;
+            margin-top: .25rem;
+            font-size: .6rem;
+            line-height: 1.3;
+            color: #a7f3d0;
+        }
+
+        #kis .kis-hub__node {
+            position: absolute;
+            left: var(--x);
+            top: var(--y);
+            display: block;
+            min-width: 9.5rem;
+            padding: .7rem 1rem;
+            text-align: center;
+            transform: translate(-50%, -50%);
+            border: 1px solid rgba(255, 255, 255, .14);
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, .06);
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+            transition: border-color .3s ease, background .3s ease, transform .3s ease;
+        }
+
+        #kis .kis-hub__node:hover,
+        #kis .kis-hub__node:focus-visible {
+            border-color: rgba(110, 231, 183, .6);
+            background: rgba(255, 255, 255, .12);
+            transform: translate(-50%, calc(-50% - 2px));
+        }
+
+        #kis .kis-hub__node b {
+            display: block;
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            color: #6ee7b7;
+        }
+
+        #kis .kis-hub__node span {
+            display: block;
+            font-size: .85rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        #kis .kis-hub__node em {
+            display: block;
+            margin-top: .1rem;
+            font-size: .68rem;
+            font-style: normal;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 639px) {
+            #kis .kis-hub {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: .75rem;
+                aspect-ratio: auto;
+            }
+
+            #kis .kis-hub__lines {
+                display: none;
+            }
+
+            #kis .kis-hub__core {
+                position: static;
+                grid-column: 1 / -1;
+                width: 6.5rem;
+                height: 6.5rem;
+                margin: 0 auto;
+                transform: none;
+            }
+
+            #kis .kis-hub__core strong {
+                font-size: 1.5rem;
+            }
+
+            #kis .kis-hub__node {
+                position: static;
+                min-width: 0;
+                transform: none;
+            }
+
+            #kis .kis-hub__node:hover,
+            #kis .kis-hub__node:focus-visible {
+                transform: none;
+            }
+        }
+
+        /* Ticker */
+        #kis .kis-ticker {
+            overflow: hidden;
+            margin-bottom: 3rem;
+            padding: .9rem 0;
+            border-block: 1px solid rgba(255, 255, 255, .08);
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+        }
+
+        #kis .kis-ticker__track {
+            display: flex;
+            width: max-content;
+            animation: kis-marquee 90s linear infinite;
+        }
+
+        #kis .kis-ticker:hover .kis-ticker__track {
+            animation-play-state: paused;
+        }
+
+        #kis .kis-ticker__track span {
+            padding-right: 2.5rem;
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            color: rgba(167, 243, 208, .5);
+        }
+
+        #kis .kis-ticker__track span::before {
+            content: '\25C6';
+            margin-right: 2.5rem;
+            font-size: .5rem;
+            vertical-align: middle;
+            color: rgba(110, 231, 183, .35);
+        }
+
+        @keyframes kis-marquee {
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Filter dan pencarian */
+        #kis .kis-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: .75rem 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        #kis .kis-filter {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: .4rem;
+        }
+
+        #kis .kis-filter__label {
+            margin-right: .25rem;
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: #64748b;
+        }
+
+        #kis .kis-filter button {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .4rem .85rem;
+            font-size: .72rem;
+            font-weight: 700;
+            color: #cbd5e1;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, .14);
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, .04);
+            transition: all .2s ease;
+        }
+
+        #kis .kis-filter button:hover {
+            border-color: rgba(110, 231, 183, .5);
+        }
+
+        #kis .kis-filter button[aria-pressed="true"] {
+            color: #022c22;
+            border-color: #6ee7b7;
+            background: #6ee7b7;
+        }
+
+        #kis .kis-search {
+            width: 100%;
+            max-width: 17rem;
+            padding: .55rem 1rem;
+            font-size: .8rem;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, .16);
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, .06);
+            outline: none;
+            transition: border-color .2s ease;
+        }
+
+        #kis .kis-search::placeholder {
+            color: #94a3b8;
+        }
+
+        #kis .kis-search:focus {
+            border-color: #6ee7b7;
+        }
+
+        #kis .kis-empty {
+            padding: 3rem 1rem;
+            text-align: center;
+            font-size: .9rem;
+            color: #94a3b8;
+        }
+
+        /* Rel navigasi lengket */
+        #kis .kis-rail {
+            position: sticky;
+            top: var(--kis-sticky-top);
+            z-index: 20;
+            display: flex;
+            gap: .35rem;
+            width: max-content;
+            max-width: 100%;
+            margin: 0 auto 3rem;
+            padding: .35rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 9999px;
+            background: rgba(2, 6, 23, .7);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        #kis .kis-rail::-webkit-scrollbar {
+            display: none;
+        }
+
+        #kis .kis-rail a {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .45rem .95rem;
+            font-size: .78rem;
+            font-weight: 700;
+            white-space: nowrap;
+            color: #cbd5e1;
+            border-radius: 9999px;
+            transition: all .25s ease;
+        }
+
+        #kis .kis-rail a b {
+            font-weight: 800;
+            color: #6ee7b7;
+        }
+
+        #kis .kis-rail a:hover {
+            color: #fff;
+        }
+
+        #kis .kis-rail a.is-active {
+            color: #022c22;
+            background: #6ee7b7;
+        }
+
+        #kis .kis-rail a.is-active b {
+            color: #022c22;
+        }
+
+        /* Kategori */
+        #kis .kis-cat {
+            --kis-accent: #2dd4bf;
+            margin-bottom: 5rem;
+            scroll-margin-top: calc(var(--kis-sticky-top) + 4.5rem);
+        }
+
+        #kis .kis-cat--bento {
+            --kis-accent: #2dd4bf;
+        }
+
+        #kis .kis-cat--carousel {
+            --kis-accent: #38bdf8;
+        }
+
+        #kis .kis-cat--nodes {
+            --kis-accent: #a78bfa;
+        }
+
+        #kis .kis-cat--chips {
+            --kis-accent: #fb7185;
+        }
+
+        #kis .kis-cat__head {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            gap: .5rem 1.25rem;
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        #kis .kis-cat__head::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 6rem;
+            height: 2px;
+            background: linear-gradient(90deg, var(--kis-accent), transparent);
+        }
+
+        #kis .kis-cat__num {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: .9;
+            color: transparent;
+            opacity: .6;
+            -webkit-text-stroke: 1px var(--kis-accent);
+        }
+
+        #kis .kis-cat__title {
+            flex: 1 1 16rem;
+            min-width: 0;
+        }
+
+        #kis .kis-cat__count {
+            padding: .3rem .8rem;
+            font-size: .72rem;
+            font-weight: 700;
+            color: var(--kis-accent);
+            border: 1px solid currentColor;
+            border-radius: 9999px;
+        }
+
+        #kis .kis-cat__arrows {
+            display: none;
+            gap: .4rem;
+        }
+
+        #kis .kis-cat--carousel .kis-cat__arrows {
+            display: inline-flex;
+        }
+
+        #kis .kis-arrow {
+            width: 2.4rem;
+            height: 2.4rem;
+            font-size: 1rem;
+            color: #fff;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, .2);
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, .06);
+            transition: background .2s ease;
+        }
+
+        #kis .kis-arrow:hover {
+            background: rgba(255, 255, 255, .14);
+        }
+
+        #kis .kis-grid {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        #kis .kis-item {
+            display: flex;
+            min-width: 0;
+        }
+
+        #kis .kis-item>* {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        #kis .kis-item.is-dim>* {
+            opacity: .22;
+            filter: grayscale(.7);
+        }
+
+        /* Gaya 1: bento */
+        #kis .kis-grid--bento {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        @media (min-width: 640px) {
+            #kis .kis-grid--bento {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1024px) {
+            #kis .kis-grid--bento {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            #kis .kis-grid--bento .kis-item:first-child:nth-last-child(n + 3) {
+                grid-column: span 2;
+            }
+
+            #kis .kis-grid--bento .kis-item:first-child:nth-last-child(n + 3) h3 {
+                font-size: 1.35rem;
+            }
+        }
+
+        /* Gaya 2: carousel */
+        #kis .kis-grid--carousel {
+            display: flex;
+            gap: 1.25rem;
+            padding: .25rem .25rem 1.25rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+
+        #kis .kis-grid--carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        #kis .kis-grid--carousel .kis-item {
+            flex: 0 0 min(19rem, 82%);
+            scroll-snap-align: start;
+        }
+
+        /* Gaya 3: node terhubung */
+        #kis .kis-grid--nodes {
+            grid-template-columns: minmax(0, 1fr);
+            row-gap: 1.25rem;
+        }
+
+        #kis .kis-grid--nodes .kis-item {
+            position: relative;
+        }
+
+        #kis .kis-grid--nodes .kis-item::before,
+        #kis .kis-grid--nodes .kis-item::after {
+            content: '';
+            display: none;
+            position: absolute;
+        }
+
+        #kis .kis-grid--nodes .kis-item::after {
+            top: 50%;
+            left: 100%;
+            width: 3rem;
+            height: 2px;
+            opacity: .6;
+            background: linear-gradient(90deg, var(--kis-accent), transparent);
+        }
+
+        #kis .kis-grid--nodes .kis-item::before {
+            top: calc(50% - 4px);
+            left: calc(100% - 4px);
+            z-index: 1;
+            width: 8px;
+            height: 8px;
+            border-radius: 9999px;
+            background: var(--kis-accent);
+            box-shadow: 0 0 12px var(--kis-accent);
+        }
+
+        @media (min-width: 640px) {
+            #kis .kis-grid--nodes {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                column-gap: 3rem;
+            }
+
+            #kis .kis-grid--nodes .kis-item:not(:nth-child(2n)):not(:last-child)::before,
+            #kis .kis-grid--nodes .kis-item:not(:nth-child(2n)):not(:last-child)::after {
+                display: block;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            #kis .kis-grid--nodes {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            #kis .kis-grid--nodes .kis-item::before,
+            #kis .kis-grid--nodes .kis-item::after {
+                display: none;
+            }
+
+            #kis .kis-grid--nodes .kis-item:not(:nth-child(3n)):not(:last-child)::before,
+            #kis .kis-grid--nodes .kis-item:not(:nth-child(3n)):not(:last-child)::after {
+                display: block;
+            }
+        }
+
+        /* Gaya 4: chip */
+        #kis .kis-grid--chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .75rem;
+        }
+
+        #kis .kis-grid--chips .kis-item>* {
+            flex: 0 1 auto;
+        }
+
+        #kis .kis-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: .55rem;
+            padding: .7rem 1.1rem;
+            font-size: .85rem;
+            font-weight: 700;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, .14);
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, .05);
+            transition: border-color .25s ease, background .25s ease, transform .25s ease;
+        }
+
+        #kis a.kis-chip:hover {
+            border-color: var(--kis-accent);
+            background: rgba(255, 255, 255, .1);
+            transform: translateY(-2px);
+        }
+
+        #kis span.kis-chip {
+            cursor: default;
+        }
+
+        #kis .kis-dot {
+            display: inline-block;
+            width: .5rem;
+            height: .5rem;
+            border-radius: 9999px;
+            background: var(--dot, #94a3b8);
+        }
+
+        #kis .kis-chip__lock {
+            display: inline-flex;
+            align-items: center;
+            gap: .25rem;
+            padding: .1rem .45rem;
+            font-size: .62rem;
+            font-weight: 700;
+            color: #c7d2fe;
+            border-radius: 9999px;
+            background: rgba(129, 140, 248, .18);
+        }
+
+        /* Label di kartu */
+        #kis .kis-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: .35rem;
+        }
+
+        #kis .kis-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            padding: .18rem .55rem;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .02em;
+            color: #e2e8f0;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, .08);
+        }
+
+        #kis .kis-pill i {
+            width: .45rem;
+            height: .45rem;
+            border-radius: 9999px;
+            background: var(--dot, #94a3b8);
+        }
+
+        #kis .kis-pill--internal {
+            color: #c7d2fe;
+            background: rgba(129, 140, 248, .18);
+        }
+
+        /* Cahaya lembut mengikuti kursor */
+        #kis .kis-fx {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #kis .kis-fx::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0;
+            background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(110, 231, 183, .14), transparent 70%);
+            transition: opacity .3s ease;
+        }
+
+        #kis .kis-fx:hover::before {
+            opacity: 1;
+        }
+
+        /* Muncul perlahan saat discroll (hanya aktif jika JavaScript berjalan) */
+        #kis.kis-js .kis-reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity .7s ease, transform .7s ease;
+            transition-delay: calc(var(--i, 0) * 70ms);
+        }
+
+        #kis.kis-js .kis-reveal.is-in {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #kis .kis-ticker__track {
+                animation: none;
+            }
+
+            #kis.kis-js .kis-reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            #kis * {
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+
     <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
-                <span class="text-xs font-bold uppercase tracking-widest text-brand-mint-300 bg-brand-emerald-900/80 px-3.5 py-1.5 rounded-full border border-brand-emerald-700">SIMRS Terpadu</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-white mt-4">Ekosistem KIS (Kariadi Information System)</h2>
+                <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-white mt-4">APLIKASI KIS (Kariadi Information System)</h2>
                 <p class="text-slate-300 mt-2 text-sm max-w-xl">Portal akses cepat ke modul-modul sistem informasi pelayanan medis dan administrasi rumah sakit.</p>
             </div>
             <div>
@@ -382,26 +1222,276 @@ $heroJSON = json_encode(array_values($heroImages));
             </div>
         </div>
 
-        <!-- KIS Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <?php foreach ($kisAplikasi as $app): ?>
-                <a href="<?= esc($app['url']) ?>" target="_blank" class="group bg-white/5 hover:bg-white/10 p-6 rounded-3xl border border-white/10 hover:border-brand-mint-400/50 hover:shadow-xl hover:shadow-brand-emerald-500/10 transition duration-300 flex flex-col justify-between">
+        <?php if ($kisKategori === []): ?>
+            <p class="kis-empty">Daftar aplikasi sedang disiapkan.</p>
+        <?php else: ?>
+
+            <!-- Hub KIS -->
+            <div class="kis-hub">
+                <svg class="kis-hub__lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                    <?php foreach ($kisKategori as $i => $kat): ?>
+                        <?php
+                        $angle = deg2rad(-90 + $i * 360 / max($kisKatCount, 1));
+                        $x = round(50 + 38 * cos($angle), 2);
+                        $y = round(50 + 38 * sin($angle), 2);
+                        ?>
+                        <line class="kis-hub__line" data-kis-spoke="<?= $i ?>" x1="50" y1="50" x2="<?= $x ?>" y2="<?= $y ?>" />
+                    <?php endforeach; ?>
+                </svg>
+                <div class="kis-hub__core">
                     <div>
-                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-mint-400 to-brand-teal-500 flex items-center justify-center text-slate-950 font-bold mb-4 group-hover:scale-105 transition shadow-md shadow-brand-mint-400/20">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                            </svg>
+                        <strong class="font-heading">KIS</strong>
+                        <small>Kariadi Information System<br><?= count($kisAllApps) ?> aplikasi</small>
+                    </div>
+                </div>
+                <?php foreach ($kisKategori as $i => $kat): ?>
+                    <?php
+                    $angle = deg2rad(-90 + $i * 360 / max($kisKatCount, 1));
+                    $x = round(50 + 38 * cos($angle), 2);
+                    $y = round(50 + 38 * sin($angle), 2);
+                    ?>
+                    <a href="#kis-cat-<?= esc($kat['slug'], 'attr') ?>" class="kis-hub__node" data-kis-node="<?= $i ?>" style="--x: <?= $x ?>%; --y: <?= $y ?>%;">
+                        <b><?= sprintf('%02d', $i + 1) ?></b>
+                        <span><?= esc($kat['nama']) ?></span>
+                        <em><?= count($kat['apps']) ?> aplikasi</em>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+
+            <!-- Ticker nama aplikasi -->
+            <?php if (count($kisAllApps) >= 4): ?>
+                <div class="kis-ticker" aria-hidden="true">
+                    <div class="kis-ticker__track">
+                        <?php for ($copy = 0; $copy < 2; $copy++): ?>
+                            <?php foreach ($kisAllApps as $app): ?>
+                                <span><?= esc($app['nama_aplikasi']) ?></span>
+                            <?php endforeach; ?>
+                        <?php endfor; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <!-- Filter klasifikasi dan pencarian -->
+            <div class="kis-toolbar">
+                <div class="kis-filter" role="group" aria-label="Filter klasifikasi">
+                    <span class="kis-filter__label">Klasifikasi</span>
+                    <button type="button" data-kis-klas="all" aria-pressed="true">Semua</button>
+                    <?php foreach ($kisKlasLabels as $key => $label): ?>
+                        <button type="button" data-kis-klas="<?= esc($key, 'attr') ?>" aria-pressed="false">
+                            <i class="kis-dot" style="--dot: <?= esc($kisKlasColors[$key], 'attr') ?>"></i><?= esc($label) ?>
+                        </button>
+                    <?php endforeach; ?>
+                </div>
+                <input type="search" class="kis-search" placeholder="Cari aplikasi..." aria-label="Cari aplikasi" data-kis-search>
+            </div>
+
+            <!-- Rel navigasi kategori -->
+            <nav class="kis-rail" aria-label="Kategori aplikasi KIS">
+                <?php foreach ($kisKategori as $i => $kat): ?>
+                    <a href="#kis-cat-<?= esc($kat['slug'], 'attr') ?>" data-kis-rail="kis-cat-<?= esc($kat['slug'], 'attr') ?>">
+                        <b><?= sprintf('%02d', $i + 1) ?></b><?= esc($kat['nama']) ?>
+                    </a>
+                <?php endforeach; ?>
+            </nav>
+
+            <!-- Kategori -->
+            <?php foreach ($kisKategori as $ki => $kat): ?>
+                <?php $variant = $kisVariants[$ki % count($kisVariants)]; ?>
+                <section id="kis-cat-<?= esc($kat['slug'], 'attr') ?>" class="kis-cat kis-cat--<?= $variant ?>" data-kis-section>
+                    <div class="kis-cat__head">
+                        <span class="kis-cat__num font-heading" aria-hidden="true"><?= sprintf('%02d', $ki + 1) ?></span>
+                        <div class="kis-cat__title">
+                            <h3 class="text-2xl sm:text-3xl font-extrabold font-heading text-white"><?= esc($kat['nama']) ?></h3>
+                            <?php if (! empty($kat['deskripsi'])): ?>
+                                <p class="text-sm text-slate-300 mt-1 max-w-xl"><?= esc($kat['deskripsi']) ?></p>
+                            <?php endif; ?>
                         </div>
-                        <h3 class="text-base font-bold font-heading text-white group-hover:text-brand-mint-300 transition"><?= esc($app['nama_aplikasi']) ?></h3>
-                        <p class="text-xs text-slate-300 mt-2 leading-relaxed"><?= esc($app['deskripsi_singkat']) ?></p>
+                        <span class="kis-cat__count"><?= count($kat['apps']) ?> aplikasi</span>
+                
                     </div>
-                    <div class="mt-5 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-brand-mint-300 group-hover:text-white">
-                        <span class="font-mono text-[11px] truncate mr-2"><?= esc($app['url']) ?></span>
-                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
+
+                    <div class="kis-grid kis-grid--<?= $variant ?>" <?= $variant === 'carousel' ? 'data-kis-track' : '' ?>>
+                        <?php foreach ($kat['apps'] as $ai => $app): ?>
+                            <div class="kis-item kis-reveal" style="--i: <?= min($ai, 8) ?>;">
+                                <?php $variant === 'chips' ? $kisChip($app) : $kisCard($app); ?>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
-                </a>
+                </section>
+            <?php endforeach; ?>
+
+            <p class="kis-empty" data-kis-empty hidden>Tidak ada aplikasi yang cocok dengan pencarian.</p>
+
+        <?php endif; ?>
+    </div>
+
+    <script>
+        (() => {
+            const root = document.getElementById('kis');
+            if (!root) return;
+            root.classList.add('kis-js');
+
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const behavior = reduce ? 'auto' : 'smooth';
+
+            // 1) Muncul perlahan saat discroll
+            const reveals = root.querySelectorAll('.kis-reveal');
+            if ('IntersectionObserver' in window && !reduce) {
+                const io = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-in');
+                            io.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.12
+                });
+                reveals.forEach((el) => io.observe(el));
+            } else {
+                reveals.forEach((el) => el.classList.add('is-in'));
+            }
+
+            // 2) Cahaya lembut mengikuti kursor
+            root.addEventListener('pointermove', (event) => {
+                const card = event.target.closest('.kis-fx');
+                if (!card) return;
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mx', (event.clientX - rect.left) + 'px');
+                card.style.setProperty('--my', (event.clientY - rect.top) + 'px');
+            });
+
+            // 3) Filter klasifikasi dan pencarian
+            const cards = [...root.querySelectorAll('[data-kis-card]')];
+            const sections = [...root.querySelectorAll('[data-kis-section]')];
+            const emptyNote = root.querySelector('[data-kis-empty]');
+            const searchInput = root.querySelector('[data-kis-search]');
+            const klasButtons = [...root.querySelectorAll('[data-kis-klas]')];
+            let klas = 'all';
+
+            const applyFilter = () => {
+                const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
+                let visible = 0;
+
+                cards.forEach((card) => {
+                    const item = card.closest('.kis-item');
+                    const textMatch = query === '' || (card.dataset.search || '').includes(query);
+                    const klasMatch = klas === 'all' || card.dataset.klas === klas;
+                    item.hidden = !textMatch;
+                    item.classList.toggle('is-dim', textMatch && !klasMatch);
+                    if (textMatch) visible++;
+                });
+
+                sections.forEach((section) => {
+                    const anyVisible = [...section.querySelectorAll('.kis-item')].some((item) => !item.hidden);
+                    section.hidden = query !== '' && !anyVisible;
+                });
+
+                if (emptyNote) emptyNote.hidden = !(query !== '' && visible === 0);
+            };
+
+            klasButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    klas = button.dataset.kisKlas;
+                    klasButtons.forEach((b) => b.setAttribute('aria-pressed', b === button ? 'true' : 'false'));
+                    applyFilter();
+                });
+            });
+            if (searchInput) searchInput.addEventListener('input', applyFilter);
+
+            // 4) Tombol panah carousel
+            root.querySelectorAll('[data-kis-scroll]').forEach((button) => {
+                button.addEventListener('click', () => {
+                    const track = button.closest('[data-kis-section]').querySelector('[data-kis-track]');
+                    if (!track) return;
+                    track.scrollBy({
+                        left: Number(button.dataset.kisScroll) * track.clientWidth * 0.8,
+                        behavior
+                    });
+                });
+            });
+
+            // 5) Lompat halus ke kategori (dari hub dan rel navigasi)
+            root.querySelectorAll('a[href^="#kis-cat-"]').forEach((link) => {
+                link.addEventListener('click', (event) => {
+                    const target = document.getElementById(link.getAttribute('href').slice(1));
+                    if (!target) return;
+                    event.preventDefault();
+                    target.scrollIntoView({
+                        behavior,
+                        block: 'start'
+                    });
+                });
+            });
+
+            // 6) Rel navigasi mengikuti posisi scroll
+            const railLinks = [...root.querySelectorAll('[data-kis-rail]')];
+            if ('IntersectionObserver' in window && railLinks.length) {
+                const spy = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
+                        railLinks.forEach((link) => link.classList.toggle('is-active', link.dataset.kisRail === entry.target.id));
+                    });
+                }, {
+                    rootMargin: '-35% 0px -55% 0px'
+                });
+                sections.forEach((section) => spy.observe(section));
+            }
+
+            // 7) Garis hub menyala saat kategori disorot
+            root.querySelectorAll('[data-kis-node]').forEach((node) => {
+                const spoke = root.querySelector('[data-kis-spoke="' + node.dataset.kisNode + '"]');
+                if (!spoke) return;
+                ['mouseenter', 'focus'].forEach((name) => node.addEventListener(name, () => spoke.classList.add('is-on')));
+                ['mouseleave', 'blur'].forEach((name) => node.addEventListener(name, () => spoke.classList.remove('is-on')));
+            });
+        })();
+    </script>
+</section>
+
+<!-- SECTION: BERITA & PENGUMUMAN -->
+<section id="berita" class="py-24 bg-slate-50 border-t border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4">
+            <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-emerald-800 bg-brand-emerald-100/70 px-3.5 py-1.5 rounded-full border border-brand-emerald-200">Informasi Terkini</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 mt-4">Berita & Update SIMRS</h2>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <?php foreach ($berita as $news): ?>
+                <article class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-brand-emerald-300 transition duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="h-48 bg-gradient-to-tr from-brand-emerald-950 via-brand-emerald-900 to-slate-800 relative flex items-center justify-center text-white overflow-hidden">
+                            <?php if (!empty($news['thumbnail'])): ?>
+                                <img src="<?= base_url('uploads/berita/' . $news['thumbnail']) ?>" alt="<?= esc($news['judul']) ?>" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <?php else: ?>
+                                <svg class="w-12 h-12 text-brand-mint-400 opacity-60 group-hover:scale-110 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                                </svg>
+                            <?php endif; ?>
+                            <span class="absolute top-4 left-4 bg-brand-emerald-950/80 backdrop-blur-md text-brand-mint-300 text-[10px] font-bold px-3 py-1 rounded-full border border-brand-emerald-700">
+                                <?= esc($news['kategori_nama'] ?? 'Berita') ?>
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="text-xs text-slate-400 mb-2 font-medium"><?= date('d F Y', strtotime($news['published_at'] ?? $news['created_at'])) ?></div>
+                            <h3 class="text-base font-bold font-heading text-slate-900 leading-snug mb-3 group-hover:text-brand-emerald-700 transition">
+                                <?= esc($news['judul']) ?>
+                            </h3>
+                            <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                                <?= esc($news['ringkasan'] ?? strip_tags($news['konten'])) ?>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <span class="text-xs font-bold text-brand-emerald-700 group-hover:text-brand-teal-700 flex items-center space-x-1">
+                            <span>Baca Selengkapnya</span>
+                            <span class="group-hover:translate-x-1 transition">&rarr;</span>
+                        </span>
+                    </div>
+                </article>
             <?php endforeach; ?>
         </div>
     </div>
@@ -439,9 +1529,7 @@ $heroJSON = json_encode(array_values($heroImages));
     <div class="max-w-7xl mx-auto px-4 sm:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
-                <span class="text-xs font-bold uppercase tracking-widest text-brand-emerald-800 bg-brand-emerald-50 px-3.5 py-1.5 rounded-full border border-brand-emerald-200">Dokumentasi & Event</span>
                 <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 mt-4">Galeri Kegiatan SIRS</h2>
-                <p class="text-slate-600 mt-2 text-sm">Dokumentasi pelatihan, pemeliharaan infrastruktur, dan kegiatan operasional tim SIRS.</p>
             </div>
 
             <!-- Filter Category Buttons -->
@@ -610,55 +1698,6 @@ $heroJSON = json_encode(array_values($heroImages));
     </div>
 </section>
 
-<!-- SECTION: BERITA & PENGUMUMAN -->
-<section id="berita" class="py-24 bg-slate-50 border-t border-slate-200/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4">
-            <div>
-                <span class="text-xs font-bold uppercase tracking-widest text-brand-emerald-800 bg-brand-emerald-100/70 px-3.5 py-1.5 rounded-full border border-brand-emerald-200">Informasi Terkini</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900 mt-4">Berita & Update SIMRS</h2>
-                <p class="text-slate-600 mt-2 text-sm">Warta inovasi teknologi informasi dan pengumuman teknis RSUP Dr. Kariadi</p>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <?php foreach ($berita as $news): ?>
-                <article class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-brand-emerald-300 transition duration-300 flex flex-col justify-between group">
-                    <div>
-                        <div class="h-48 bg-gradient-to-tr from-brand-emerald-950 via-brand-emerald-900 to-slate-800 relative flex items-center justify-center text-white overflow-hidden">
-                            <?php if (!empty($news['thumbnail'])): ?>
-                                <img src="<?= base_url('uploads/berita/' . $news['thumbnail']) ?>" alt="<?= esc($news['judul']) ?>" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <?php else: ?>
-                                <svg class="w-12 h-12 text-brand-mint-400 opacity-60 group-hover:scale-110 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                                </svg>
-                            <?php endif; ?>
-                            <span class="absolute top-4 left-4 bg-brand-emerald-950/80 backdrop-blur-md text-brand-mint-300 text-[10px] font-bold px-3 py-1 rounded-full border border-brand-emerald-700">
-                                <?= esc($news['kategori_nama'] ?? 'Berita') ?>
-                            </span>
-                        </div>
-                        <div class="p-6">
-                            <div class="text-xs text-slate-400 mb-2 font-medium"><?= date('d F Y', strtotime($news['published_at'] ?? $news['created_at'])) ?></div>
-                            <h3 class="text-base font-bold font-heading text-slate-900 leading-snug mb-3 group-hover:text-brand-emerald-700 transition">
-                                <?= esc($news['judul']) ?>
-                            </h3>
-                            <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
-                                <?= esc($news['ringkasan'] ?? strip_tags($news['konten'])) ?>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 pt-0">
-                        <span class="text-xs font-bold text-brand-emerald-700 group-hover:text-brand-teal-700 flex items-center space-x-1">
-                            <span>Baca Selengkapnya</span>
-                            <span class="group-hover:translate-x-1 transition">&rarr;</span>
-                        </span>
-                    </div>
-                </article>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
-
 <!-- SECTION: CTA MANPRO BANNER INTEGRASI -->
 <section class="py-20 bg-gradient-to-r from-brand-emerald-800 via-brand-emerald-700 to-brand-teal-800 text-white relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-8 text-center relative z-10 space-y-6">
@@ -815,7 +1854,7 @@ $heroJSON = json_encode(array_values($heroImages));
 
             const transitionTop = transition.getBoundingClientRect().top + window.scrollY;
             const progress = Math.min(1, Math.max(0, (window.scrollY - transitionTop) / Math.max(panelHeight, 1)));
-            organization.style.transform = `translate3d(0, ${progress * panelHeight}px, 0)`;
+            organization.style.transform = `translate3d(0, ${(progress - 1) * panelHeight}px, 0)`;
         };
 
         const requestCurtainUpdate = () => {
@@ -827,8 +1866,12 @@ $heroJSON = json_encode(array_values($heroImages));
             window.requestAnimationFrame(updateCurtain);
         };
 
-        window.addEventListener('scroll', requestCurtainUpdate, { passive: true });
-        window.addEventListener('resize', requestCurtainUpdate, { passive: true });
+        window.addEventListener('scroll', requestCurtainUpdate, {
+            passive: true
+        });
+        window.addEventListener('resize', requestCurtainUpdate, {
+            passive: true
+        });
         reducedMotionQuery.addEventListener('change', requestCurtainUpdate);
         requestCurtainUpdate();
     })();
@@ -850,8 +1893,9 @@ $heroJSON = json_encode(array_values($heroImages));
                 return;
             }
 
-            const scrollDistance = Math.max(stage.offsetHeight - window.innerHeight, 1);
-            const progress = Math.min(1, Math.max(0, -stage.getBoundingClientRect().top / scrollDistance));
+            const startOffset = 96;
+            const scrollDistance = Math.max(stage.offsetHeight - window.innerHeight + startOffset, 1);
+            const progress = Math.min(1, Math.max(0, (startOffset - stage.getBoundingClientRect().top) / scrollDistance));
             track.style.transform = `translate3d(${110 - progress * 220}vw, 0, 0)`;
         };
 
@@ -864,10 +1908,104 @@ $heroJSON = json_encode(array_values($heroImages));
             window.requestAnimationFrame(updateDesktopTrack);
         };
 
-        window.addEventListener('scroll', requestDesktopUpdate, { passive: true });
-        window.addEventListener('resize', requestDesktopUpdate, { passive: true });
+        window.addEventListener('scroll', requestDesktopUpdate, {
+            passive: true
+        });
+        window.addEventListener('resize', requestDesktopUpdate, {
+            passive: true
+        });
         reducedMotionQuery.addEventListener('change', requestDesktopUpdate);
         requestDesktopUpdate();
+    })();
+
+    (() => {
+        const viewer = document.getElementById('layanan-media-viewer');
+        if (!viewer) {
+            return;
+        }
+
+        const title = viewer.querySelector('#layanan-viewer-title');
+        const image = viewer.querySelector('[data-viewer-image]');
+        const video = viewer.querySelector('[data-viewer-video]');
+        const content = [image, video];
+        const triggerSelector = '[data-layanan-viewer]';
+        let zoom = 1;
+        let lastTrigger = null;
+        let previousOverflow = '';
+
+        const applyZoom = () => {
+            content.forEach((element) => {
+                element.style.transform = `scale(${zoom})`;
+            });
+        };
+
+        const closeViewer = () => {
+            if (viewer.hidden) {
+                return;
+            }
+            viewer.hidden = true;
+            viewer.classList.add('hidden');
+            video.pause();
+            video.removeAttribute('src');
+            video.load();
+            image.removeAttribute('src');
+            zoom = 1;
+            applyZoom();
+            document.body.style.overflow = previousOverflow;
+            if (lastTrigger) {
+                lastTrigger.focus();
+            }
+        };
+
+        document.querySelectorAll(triggerSelector).forEach((trigger) => {
+            trigger.addEventListener('click', () => {
+                lastTrigger = trigger;
+                title.textContent = trigger.dataset.title || '';
+                zoom = 1;
+                applyZoom();
+
+                const isVideo = trigger.dataset.mediaType === 'video';
+                image.classList.toggle('hidden', isVideo);
+                video.classList.toggle('hidden', !isVideo);
+                if (isVideo) {
+                    video.src = trigger.dataset.src;
+                    video.load();
+                } else {
+                    image.src = trigger.dataset.src;
+                    image.alt = trigger.dataset.title || '';
+                }
+
+                previousOverflow = document.body.style.overflow;
+                document.body.style.overflow = 'hidden';
+                viewer.hidden = false;
+                viewer.classList.remove('hidden');
+                viewer.querySelector('[data-viewer-close]').focus();
+            });
+        });
+
+        viewer.querySelector('[data-viewer-close]').addEventListener('click', closeViewer);
+        viewer.addEventListener('click', (event) => {
+            if (event.target === viewer) {
+                closeViewer();
+            }
+        });
+        viewer.querySelector('[data-viewer-zoom-in]').addEventListener('click', () => {
+            zoom = Math.min(3, zoom + 0.25);
+            applyZoom();
+        });
+        viewer.querySelector('[data-viewer-zoom-out]').addEventListener('click', () => {
+            zoom = Math.max(0.5, zoom - 0.25);
+            applyZoom();
+        });
+        viewer.querySelector('[data-viewer-reset]').addEventListener('click', () => {
+            zoom = 1;
+            applyZoom();
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeViewer();
+            }
+        });
     })();
 </script>
 <?= $this->endSection() ?>

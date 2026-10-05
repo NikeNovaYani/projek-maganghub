@@ -10,12 +10,13 @@ class LayananItemModel extends Model
     protected $primaryKey       = 'id';
     protected $returnType       = 'array';
     protected $useTimestamps    = true;
-    protected $allowedFields    = ['kategori_id', 'judul', 'deskripsi', 'urutan', 'created_by', 'updated_by'];
+    protected $allowedFields    = ['kategori_id', 'judul', 'deskripsi', 'gambar_layanan', 'urutan', 'created_by', 'updated_by'];
 
     protected $validationRules = [
         'kategori_id' => 'required|is_natural_no_zero|is_not_unique[layanan_kategori.id]',
         'judul'       => 'required|min_length[2]|max_length[150]',
         'deskripsi'   => 'permit_empty|max_length[2000]',
+        'gambar_layanan' => 'permit_empty|max_length[255]',
     ];
 
     protected $validationMessages = [

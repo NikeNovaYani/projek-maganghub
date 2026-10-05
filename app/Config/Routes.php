@@ -17,7 +17,7 @@ service('auth')->routes($routes);
 $routes->group('admin', ['filter' => 'session'], function ($routes) {
     $routes->get('/', 'Admin\Dashboard::index');
     $routes->get('dashboard', 'Admin\Dashboard::index');
-    
+
     $routes->group('organisasi', ['filter' => 'csrf'], function ($routes) {
         $routes->get('/', 'Admin\Organisasi::index');
         $routes->get('create', 'Admin\Organisasi::create');
@@ -31,10 +31,40 @@ $routes->group('admin', ['filter' => 'session'], function ($routes) {
         $routes->get('anggota/edit/(:num)/(:num)', 'Admin\Organisasi::editMember/$1/$2');
         $routes->post('anggota/update/(:num)/(:num)', 'Admin\Organisasi::updateMember/$1/$2');
         $routes->post('anggota/delete/(:num)/(:num)', 'Admin\Organisasi::deleteMember/$1/$2');
-        $routes->get('layanan', 'Admin\Layanan::index');
     });
-    $routes->get('layanan', 'Admin\Layanan::index');
-    $routes->get('kis', 'Admin\Dashboard::index');
+
+    $routes->group('layanan', ['filter' => 'csrf'], function ($routes) {
+        $routes->get('/', 'Admin\Layanan::index');
+
+        // Kategori
+        $routes->post('kategori/store', 'Admin\Layanan::storeKategori');
+        $routes->post('kategori/update/(:num)', 'Admin\Layanan::updateKategori/$1');
+        $routes->post('kategori/delete/(:num)', 'Admin\Layanan::deleteKategori/$1');
+        $routes->post('kategori/move/(:num)/(:segment)', 'Admin\Layanan::moveKategori/$1/$2');
+
+        // Layanan (item)
+        $routes->post('item/store', 'Admin\Layanan::storeItem');
+        $routes->post('item/update/(:num)', 'Admin\Layanan::updateItem/$1');
+        $routes->post('item/delete/(:num)', 'Admin\Layanan::deleteItem/$1');
+        $routes->post('item/move/(:num)/(:segment)', 'Admin\Layanan::moveItem/$1/$2');
+    });
+
+    $routes->group('kis', ['filter' => 'csrf'], function ($routes) {
+        $routes->get('/', 'Admin\Kis::index');
+
+        // Kategori
+        $routes->post('kategori/store', 'Admin\Kis::storeKategori');
+        $routes->post('kategori/update/(:num)', 'Admin\Kis::updateKategori/$1');
+        $routes->post('kategori/delete/(:num)', 'Admin\Kis::deleteKategori/$1');
+        $routes->post('kategori/move/(:num)/(:segment)', 'Admin\Kis::moveKategori/$1/$2');
+
+        // Aplikasi
+        $routes->post('app/store', 'Admin\Kis::storeApp');
+        $routes->post('app/update/(:num)', 'Admin\Kis::updateApp/$1');
+        $routes->post('app/delete/(:num)', 'Admin\Kis::deleteApp/$1');
+        $routes->post('app/move/(:num)/(:segment)', 'Admin\Kis::moveApp/$1/$2');
+    });
+
     $routes->get('berita', 'Admin\Dashboard::index');
     $routes->get('kegiatan', 'Admin\Dashboard::index');
     $routes->get('kategori', 'Admin\Dashboard::index');

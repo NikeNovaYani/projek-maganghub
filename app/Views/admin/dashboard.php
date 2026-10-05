@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="text-2xl font-black font-heading text-slate-800"><?= $stats['total_kis'] ?></div>
-            <a href="<?= base_url('admin/kis') ?>" class="mt-2 inline-flex items-center space-x-1 text-xs text-indigo-600 font-semibold hover:underline">
+            <a href="<?= base_url('admin/aplikasi-kis') ?>" class="mt-2 inline-flex items-center space-x-1 text-xs text-indigo-600 font-semibold hover:underline">
                 <span>Daftar KIS &rarr;</span>
             </a>
         </div>

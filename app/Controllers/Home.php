@@ -18,7 +18,7 @@ class Home extends BaseController
             ->orderBy('urutan', 'ASC')
             ->get()
             ->getResultArray();
-            
+
         $layananItems = $db->table('layanan_item')
             ->orderBy('urutan', 'ASC')
             ->get()
@@ -41,6 +41,30 @@ class Home extends BaseController
             ->orderBy('urutan', 'ASC')
             ->get()
             ->getResultArray();
+
+        // Data KIS per kategori (untuk tampilan publik yang dikelompokkan)
+        $kisKategori = $db->table('kis_kategori')
+            ->orderBy('urutan', 'ASC')
+            ->orderBy('id', 'ASC')
+            ->get()
+            ->getResultArray();
+
+        $kisAppsByKategori = [];
+        foreach ($kisAplikasi as $kisApp) {
+            if (! empty($kisApp['kategori_id'])) {
+                $kisAppsByKategori[$kisApp['kategori_id']][] = $kisApp;
+            }
+        }
+
+        foreach ($kisKategori as $kisIndex => $kisKat) {
+            $kisKategori[$kisIndex]['apps'] = $kisAppsByKategori[$kisKat['id']] ?? [];
+        }
+
+        // Kategori kosong tidak ditampilkan di website publik
+        $kisKategori = array_values(array_filter(
+            $kisKategori,
+            static fn(array $kat): bool => $kat['apps'] !== []
+        ));
 
         // Berita Terpublikasi
         $berita = $db->table('berita')
@@ -85,6 +109,7 @@ class Home extends BaseController
             'layananKategori'  => $layananKategori,
             'itemsByKategori'  => $itemsByKategori,
             'kisAplikasi'      => $kisAplikasi,
+            'kisKategori'      => $kisKategori,
             'berita'           => $berita,
             'kategoriKegiatan' => $kategoriKegiatan,
             'kegiatan'         => $kegiatan,
